@@ -18,14 +18,14 @@ const days = [
     sources: [meitetsu, ['中部國際機場', 'https://www.centrair.jp/']],
     cards: [
       { title: '台北 → 中部國際機場', transport: '飛機', items: [
-        ['08:45', '台灣起飛'],
+        ['08:45', '台灣虎航 IT206｜桃園國際機場第一航廈（T1）起飛', '出發機場、航廈與報到櫃檯請依電子機票及航空公司公告再次確認。'],
         ['12:30', '抵達中部國際機場', '', airport]
       ] },
       { title: '機場航廈接駁', transport: '接駁', items: [
         ['13:00', '第二航廈出關後搭航廈間接駁巴士', '行程表註記約每 15 分鐘一班，實際班距、上下車位置與後續交通待確認。', '中部国際空港 第2ターミナル']
       ] },
       { title: '熱田神宮與鰻魚飯', items: [
-        ['15:00', '熱田神宮', '', '熱田神宮'],
+        ['15:00', '熱田神宮', '📕 御朱印收集提醒：參拜後確認授與所位置、受理時間及初穗料。', '熱田神宮'],
         ['16:00', '熱田蓬萊軒本店', '吃鰻魚飯。表列 16:30 開門，實際營業時間、候位或預約方式待確認。', 'あつた蓬莱軒 本店']
       ] },
       { title: '神宮 → 名古屋', transport: '轉乘', items: [
@@ -98,7 +98,7 @@ const days = [
     sources: [['名古屋市交通局', 'https://www.kotsu.city.nagoya.jp/']],
     cards: [
       { title: '大須散策', items: [
-        ['09:00', '大須觀音寺', '', '大須観音'],
+        ['09:00', '大須觀音寺', '📕 御朱印收集提醒（寺院）：確認納經所受理時間與納經料。', '大須観音'],
         ['10:00', '大須商店街', '逛動漫商品店，可分頭逛。', '大須商店街']
       ] },
       { title: '名古屋 PARCO', items: [
@@ -120,7 +120,7 @@ const days = [
     stay: comfort, hotelMap: 'コンフォートホテル中部国際空港',
     sources: [meitetsu, ['國寶犬山城', 'https://inuyama-castle.jp/']],
     cards: [
-      { title: '別小江神社', items: [['09:00', '參拜別小江神社', '', '別小江神社']] },
+      { title: '別小江神社', items: [['09:00', '參拜別小江神社', '📕 御朱印收集提醒：以特色季節限定款聞名，請確認當日授與方式、時間及初穗料。', '別小江神社']] },
       { title: '前往犬山', transport: '轉乘', items: [['10:00', '往犬山城下町移動', '路線、車次與車資待確認。']] },
       { title: '犬山半日遊', items: [
         ['12:00', '犬山城下町', '', '犬山城下町'],
@@ -140,7 +140,7 @@ const days = [
     cards: [
       { title: '機場採買', items: [['10:00', '購買蝦餅與伴手禮', '店家與營業時間待確認。', airport]] },
       { title: '中部國際機場 → 台灣', transport: '飛機', items: [
-        ['13:15', '搭機返台', '機場航廈、報到與登機時間待確認。依航空公司公告安排提前抵達航廈。', airport]
+        ['13:15', '台灣虎航 IT207｜中部國際機場第二航廈（T2）起飛返台', '請依電子機票及航空公司公告確認航廈、報到櫃檯與登機時間；提前辦理報到。', '中部国際空港 第2ターミナル']
       ] }
     ]
   }
@@ -156,6 +156,8 @@ const transportColors = {
   '飛機': 'air'
 };
 const highlight = '<span class="must-visit">必去</span>';
+const goshuinSites = new Set(['熱田神宮', '大須觀音寺', '參拜別小江神社']);
+const goshuinBadge = '<span class="goshuin-badge" aria-label="御朱印收集地點">📕 御朱印</span>';
 
 const itinerary = document.querySelector('#itinerary');
 const navLinks = document.querySelectorAll('.days a');
@@ -197,7 +199,7 @@ function renderCard({ title, transport, items }) {
           <li class="card-item">
             ${index ? `<span class="period">${escapeHtml(time)}</span>` : ''}
             <div>
-              <p class="item-name">${escapeHtml(name)} ${mustVisit.has(name) ? highlight : ''}</p>
+              <p class="item-name">${escapeHtml(name)} ${mustVisit.has(name) ? highlight : ''} ${goshuinSites.has(name) ? goshuinBadge : ''}</p>
               ${detail ? `<p class="item-note">${escapeHtml(detail)}</p>` : ''}
               ${place || extra.length ? `<div class="actions">
                 ${place ? mapLink(place) : ''}
