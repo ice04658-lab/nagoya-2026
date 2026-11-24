@@ -150,6 +150,7 @@ h2 { font-size: clamp(1.45rem, 4.5vw, 2rem); }
 .air, .must-visit { background: var(--yellow); }
 .transfer { background: var(--coral); }
 .must-visit { vertical-align: middle; }
+.goshuin-badge { display: inline-block; margin-inline-start: .3rem; padding: .12rem .5rem; border: 1px solid var(--ink); border-radius: 999px; background: var(--green); color: var(--ink); font-size: .78rem; font-weight: 700; vertical-align: middle; white-space: nowrap; }
 .timeline h3, .trip-note h3 { margin: .35rem 0 .4rem; font-size: 1.15rem; }
 .card-items { list-style: none; padding: 0; margin: 0; }
 .card-item + .card-item { margin-top: .55rem; padding-top: .55rem; border-top: 1px dashed var(--line); }
