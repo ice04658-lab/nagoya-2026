@@ -46,14 +46,14 @@ h1 { font-family: "Noto Serif TC", "Songti TC", serif; font-size: clamp(2.45rem,
 .flake-one { top: 11%; left: 20%; }
 .flake-two { top: 2%; left: 51%; }
 .flake-three { top: 35%; right: 8%; font-size: .8rem; }
-.days { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 20px 0 26px; }
+.days { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 20px 0 26px; scroll-margin-top: 1rem; }
 .days a { display: grid; place-items: center; min-height: 44px; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; font-weight: 650; font-size: .88rem; background: #fffdf8; }
 .days a:hover, .day-card:hover { border-color: #769287; }
 .days a[aria-current] { background: var(--ink); border-color: var(--ink); color: white; }
 .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; align-items: center; margin-bottom: .75rem; }
 .section-head h2 { font-size: clamp(1.45rem, 5vw, 1.9rem); scroll-margin-top: 1rem; }
 .mini, #packing-count { font-size: .83rem; font-weight: 650; background: #ecebe1; border-radius: 50px; padding: .2rem .65rem; }
-.day-grid, .detail-grid, .packing-grid { display: grid; gap: 12px; }
+.day-grid, .packing-grid { display: grid; gap: 12px; }
 .day-card { display: flex; flex-direction: column; gap: .55rem; padding: 16px; text-decoration: none; border: 1px solid transparent; border-radius: 16px; }
 .tint-0 { background: var(--green); }
 .tint-1 { background: var(--pink); }
@@ -64,16 +64,54 @@ h1 { font-family: "Noto Serif TC", "Songti TC", serif; font-size: clamp(2.45rem,
 .card-bottom span { font-size: 1.1rem; }
 .day-card p, .summary { font-size: .93rem; }
 .summary { margin-bottom: 1rem; }
-.timeline { list-style: none; padding: 0 0 0 16px; margin: 0; border-left: 2px solid #c4d7cc; }
-.timeline li { position: relative; padding: 0 0 1rem; }
-.timeline li:last-child { padding-bottom: 0; }
-.timeline li::before { content: ''; position: absolute; left: -22px; top: .55rem; width: 10px; height: 10px; border: 2px solid var(--paper); border-radius: 50%; background: #597f70; }
-.period { font-size: .78rem; font-weight: 750; color: var(--muted); }
-.timeline h3, .trip-notes h3 { margin: .2rem 0; font-size: 1.05rem; }
-.actions { display: flex; flex-wrap: wrap; gap: 0 1rem; }
-.actions a, .trip-notes a, .day-pager a { display: inline-flex; align-items: center; min-height: 44px; font-size: .88rem; font-weight: 650; }
-.trip-notes { display: grid; gap: 9px; align-content: start; }
-.trip-notes section { padding: 12px 14px; background: #fffdf8; border-radius: 12px; border: 1px solid var(--line); }
+.timeline {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  padding: 0 0 0 13px;
+  margin: 0 0 0 5px;
+  border-left: 2px solid #c4d7cc;
+}
+.timeline-card {
+  position: relative;
+  min-width: 0;
+  padding: 12px;
+  background: #fffdf8;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.timeline-card::before {
+  content: '';
+  position: absolute;
+  left: -21px;
+  top: 19px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  background: #597f70;
+}
+.transport-card { background: var(--blue); border-color: #c4d8e3; }
+.transport-card::before { background: #3c687b; }
+.timeline-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+.period, .transport-label {
+  color: var(--muted);
+  font-size: .83rem;
+  font-weight: 750;
+}
+.period { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.transport-label { padding: .12rem .55rem; border-radius: 1rem; background: #d1e3ee; color: #2d5768; }
+.timeline h3, .trip-note h3 { margin: .25rem 0 .4rem; font-size: 1.1rem; }
+.timeline-card, .trip-note { overflow-wrap: anywhere; }
+.card-items { list-style: none; padding: 0; margin: 0; }
+.card-item + .card-item { margin-top: .5rem; padding-top: .55rem; border-top: 1px dashed #c9d3cb; }
+.item-name { color: var(--ink); }
+.item-note { font-size: .92rem; margin-top: .15rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 0 .65rem; }
+.actions a, .day-pager a { display: inline-flex; align-items: center; min-height: 44px; font-size: .88rem; font-weight: 650; }
+.timeline .map, .stay .map { padding-inline: .3rem; }
+.trip-note { margin-top: 12px; padding: 12px 14px; background: #fffdf8; border-radius: 12px; border: 1px solid var(--line); }
+.stay { background: var(--green); }
 .day-pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; }
 .ropeway, .packing { margin-top: 26px; border-radius: 17px; padding: 16px; }
 .ropeway { display: flex; gap: 10px; align-items: flex-start; background: var(--blue); }
@@ -95,7 +133,7 @@ footer { color: var(--muted); font-size: .8rem; padding: 26px 0; text-align: cen
 @media (min-width: 850px) {
   .hero-copy { padding: 44px 0 46px 42px; }
   .day-grid { grid-template-columns: repeat(3, 1fr); }
-  .detail-grid { grid-template-columns: 1.4fr 1fr; gap: 26px; }
+  .timeline-card { padding-inline: 20px; }
   .packing-grid { grid-template-columns: repeat(4, 1fr); }
   .day-card, .ropeway, .packing { padding: 20px; }
 }
