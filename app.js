@@ -146,6 +146,17 @@ const days = [
   }
 ];
 
+const mustVisit = new Set([
+  '熱田神宮', '高山古街散策', '新穗高賞雪冒險', '大須商店街', '名古屋 PARCO', '犬山城登天守'
+]);
+const transportColors = {
+  'JR 特急': 'rail',
+  '濃飛巴士': 'bus',
+  '接駁': 'bus',
+  '飛機': 'air'
+};
+const highlight = '<span class="must-visit">必去</span>';
+
 const itinerary = document.querySelector('#itinerary');
 const navLinks = document.querySelectorAll('.days a');
 const escapeHtml = value => value.replace(/[&<>"']/g, character => ({
@@ -165,7 +176,7 @@ function renderOverview() {
     <div class="day-grid">
       ${days.map((day, index) => `
         <a class="day-card tint-${index % 3}" href="#day-${index + 1}">
-          <span class="card-meta"><time datetime="2026-12-${escapeHtml(day.date.slice(3))}">${escapeHtml(day.date)}（${escapeHtml(day.weekday)}）</time><span>${escapeHtml(day.city)}</span></span>
+          <span class="card-meta"><time datetime="2026-12-${escapeHtml(day.date.slice(3))}">DAY ${index + 1} · ${escapeHtml(day.date)}（${escapeHtml(day.weekday)}）</time><span>${escapeHtml(day.city)}</span></span>
           <h3>${escapeHtml(day.title)}</h3>
           <p>${escapeHtml(day.summary)}</p>
           <span class="card-bottom">${day.stay ? '住宿 · ' + escapeHtml(day.stay) : '返台日'}<span aria-hidden="true">↗</span></span>
@@ -178,15 +189,15 @@ function renderCard({ title, transport, items }) {
     <li class="timeline-card${transport ? ' transport-card' : ''}">
       <div class="timeline-meta">
         <span class="period">${escapeHtml(items[0][0])}</span>
-        ${transport ? `<span class="transport-label">${escapeHtml(transport)}</span>` : ''}
+        ${transport ? `<span class="transport-label ${transportColors[transport] ?? 'transfer'}">${escapeHtml(transport)}</span>` : ''}
       </div>
-      <h3>${escapeHtml(title)}</h3>
+      <h3>${escapeHtml(title)} ${mustVisit.has(title) ? highlight : ''}</h3>
       <ul class="card-items" role="list">
         ${items.map(([time, name, detail, place, extra = []], index) => `
           <li class="card-item">
             ${index ? `<span class="period">${escapeHtml(time)}</span>` : ''}
             <div>
-              <p class="item-name">${escapeHtml(name)}</p>
+              <p class="item-name">${escapeHtml(name)} ${mustVisit.has(name) ? highlight : ''}</p>
               ${detail ? `<p class="item-note">${escapeHtml(detail)}</p>` : ''}
               ${place || extra.length ? `<div class="actions">
                 ${place ? mapLink(place) : ''}
@@ -200,9 +211,9 @@ function renderCard({ title, transport, items }) {
 
 function renderDay(day, index) {
   return `
-    <div class="section-head"><h2 id="view-title" tabindex="-1">${escapeHtml(day.title)}</h2><span class="mini">${escapeHtml(day.date)}（${escapeHtml(day.weekday)}）</span></div>
+    <div class="section-head"><h2 id="view-title" tabindex="-1">${escapeHtml(day.title)}</h2><span class="mini">DAY ${index + 1} · ${escapeHtml(day.date)}（${escapeHtml(day.weekday)}）</span></div>
     <p class="summary">${escapeHtml(day.summary)} 以下為行程表所列時間，交通與營業資訊請於出發前核對。</p>
-    <ol class="timeline" role="list" aria-label="每日時間軸">
+    <ol class="timeline route-enter" role="list" aria-label="每日時間軸">
       ${day.cards.map(renderCard).join('')}
     </ol>
     ${day.sources ? `<section class="trip-note">
@@ -226,48 +237,99 @@ function renderRoute(moveFocus = false) {
   const match = /^#day-([1-6])$/.exec(hash);
   if (moveFocus && !match && hash !== '#overview' && hash !== '') return;
   const index = match ? Number(match[1]) - 1 : -1;
+  document.querySelector('#overview').hidden = index >= 0;
+  document.querySelectorAll('[data-overview]').forEach(section => { section.hidden = index >= 0; });
   itinerary.innerHTML = index < 0 ? renderOverview() : renderDay(days[index], index);
   navLinks.forEach(link => {
     if (link.hash === (match ? hash : '#overview')) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
+  const activeLink = navLinks[index + 1];
+  const dates = activeLink.parentElement;
+  dates.scrollLeft = activeLink.offsetLeft - dates.clientWidth / 2 + activeLink.offsetWidth / 2;
   if (moveFocus) {
     const title = document.querySelector('#view-title');
     title.focus({ preventScroll: true });
-    navLinks[0].parentElement.scrollIntoView({ block: 'start' });
+    (index < 0 ? document.querySelector('#overview') : dates).scrollIntoView({ block: 'start' });
   }
 }
 
 renderRoute();
 window.addEventListener('hashchange', () => renderRoute(true));
 
-const storageKey = 'nagoya-2026-packing';
-const packing = document.querySelector('#packing');
-const items = [...packing.querySelectorAll('input')];
-const count = document.querySelector('#packing-count');
-const storageStatus = document.querySelector('#packing-status');
-let saved = [];
-try {
-  const stored = JSON.parse(localStorage.getItem(storageKey));
-  if (Array.isArray(stored)) saved = stored;
-} catch {
-  storageStatus.hidden = false;
-}
-items.forEach(item => { item.checked = saved.includes(item.value); });
+const taipeiDate = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit'
+});
+const dayLength = 86_400_000;
+const departure = Date.UTC(2026, 11, 7);
+const lastDay = Date.UTC(2026, 11, 12);
+const countdown = document.querySelector('#countdown');
 
-function updateCount() {
-  const checked = items.filter(item => item.checked).map(item => item.value);
-  count.textContent = `已勾選 ${checked.length} / ${items.length}`;
-  return checked;
+function updateCountdown() {
+  const date = Object.fromEntries(taipeiDate.formatToParts(new Date()).map(({ type, value }) => [type, Number(value)]));
+  const today = Date.UTC(date.year, date.month - 1, date.day);
+  const elapsed = (today - departure) / dayLength;
+  let message = '旅行完成 ♡';
+  if (elapsed < 0) message = `距離出發還有 ${-elapsed} 天`;
+  else if (elapsed === 0) message = '今天出發！✈️';
+  else if (today <= lastDay) message = `旅行第 ${elapsed + 1} 天`;
+  countdown.textContent = message;
 }
 
-updateCount();
-packing.addEventListener('change', () => {
-  const checked = updateCount();
+updateCountdown();
+// Taipei is UTC+8 throughout the trip. Refresh at the next Taipei midnight
+// and when a suspended tab becomes visible again.
+function scheduleCountdown() {
+  const untilMidnight = dayLength - ((Date.now() + 8 * 3_600_000) % dayLength);
+  setTimeout(() => {
+    updateCountdown();
+    scheduleCountdown();
+  }, untilMidnight);
+}
+scheduleCountdown();
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) updateCountdown();
+});
+window.addEventListener('pageshow', updateCountdown);
+
+function setupChecklist(id) {
+  const checklist = document.getElementById(id);
+  const items = [...checklist.querySelectorAll('input')];
+  const count = document.getElementById(`${id}-count`);
+  const storageStatus = document.getElementById(`${id}-status`);
+  const storageKey = `nagoya-2026-${id}`;
   try {
-    localStorage.setItem(storageKey, JSON.stringify(checked));
-    storageStatus.hidden = true;
+    const saved = JSON.parse(localStorage.getItem(storageKey));
+    if (Array.isArray(saved)) items.forEach(item => { item.checked = saved.includes(item.value); });
   } catch {
     storageStatus.hidden = false;
   }
-});
+
+  function updateCount() {
+    const checked = items.filter(item => item.checked).map(item => item.value);
+    count.textContent = `已勾選 ${checked.length} / ${items.length}`;
+    return checked;
+  }
+
+  updateCount();
+  checklist.addEventListener('change', () => {
+    const checked = updateCount();
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(checked));
+      storageStatus.hidden = true;
+    } catch {
+      storageStatus.hidden = false;
+    }
+  });
+}
+
+setupChecklist('packing');
+setupChecklist('prep');
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(error => {
+      console.warn('離線快取無法啟用', error);
+    });
+  });
+}
