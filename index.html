@@ -1,1 +1,71 @@
-
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf7ef">
+  <title>名古屋冬日手帳｜2026 名古屋・高山</title>
+  <meta name="description" content="2026 年 12 月名古屋與高山六日行程，附交通、住宿與行李清單。">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#content">跳到行程內容</a>
+  <header class="top shell">
+    <a class="brand" href="#overview"><span aria-hidden="true">❄</span> 冬日旅行手帳</a>
+    <a class="packing-link" href="#packing">行李清單 <span aria-hidden="true">↘</span></a>
+  </header>
+  <main class="shell" id="content" tabindex="-1">
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">2026 DEC 07–12 · JAPAN</p>
+        <h1>名古屋<span class="hero-dot">・</span>高山<br>冬日小旅行</h1>
+        <p>從名古屋的街道，走到飛驒的雪山。</p>
+      </div>
+      <div class="landscape" aria-hidden="true">
+        <span class="sun"></span><span class="peak peak-back"></span><span class="peak peak-front"></span>
+        <span class="snow"></span><span class="tree tree-one"></span><span class="tree tree-two"></span>
+        <span class="flake flake-one">✦</span><span class="flake flake-two">✧</span><span class="flake flake-three">✦</span>
+      </div>
+    </div>
+    <nav class="days" aria-label="行程分頁">
+      <a href="#overview" aria-current="page">總覽</a>
+      <a href="#day-1">12/07</a><a href="#day-2">12/08</a><a href="#day-3">12/09</a>
+      <a href="#day-4">12/10</a><a href="#day-5">12/11</a><a href="#day-6">12/12</a>
+    </nav>
+    <section id="itinerary" aria-labelledby="view-title"></section>
+    <noscript><p>請啟用 JavaScript，以查看每日行程及使用行李清單。</p></noscript>
+    <aside class="ropeway" aria-labelledby="ropeway-title">
+      <div class="section-icon" aria-hidden="true">❄</div>
+      <div>
+        <h2 id="ropeway-title">新穗高纜車</h2>
+        <p>12/09 搭乘前查閱即時營運、天氣及道路資訊。冬季班表、票價與營運時段待確認。</p>
+        <div class="actions">
+          <a href="https://shinhotaka-ropeway.jp/">纜車官網 ↗</a>
+          <a href="https://shinhotaka-ropeway.jp/price/">營運時間與票價 ↗</a>
+          <a href="https://www.nouhibus.co.jp/route_bus/shinhotaka-line/">濃飛巴士路線 ↗</a>
+        </div>
+      </div>
+    </aside>
+    <section id="packing" class="packing" aria-labelledby="packing-title">
+      <div class="section-head">
+        <h2 id="packing-title">行李清單</h2>
+        <output id="packing-count" aria-live="polite"></output>
+      </div>
+      <p>勾選狀態會留在這個瀏覽器。</p>
+      <div class="packing-grid">
+        <label><input type="checkbox" value="passport">護照</label>
+        <label><input type="checkbox" value="documents">機票與住宿資料</label>
+        <label><input type="checkbox" value="wallet">日圓與信用卡</label>
+        <label><input type="checkbox" value="coat">防風保暖外套</label>
+        <label><input type="checkbox" value="boots">防滑防水鞋</label>
+        <label><input type="checkbox" value="gloves">手套、帽子與圍巾</label>
+        <label><input type="checkbox" value="charger">充電器與行動電源</label>
+        <label><input type="checkbox" value="medicine">常用藥品</label>
+      </div>
+      <p id="packing-status" role="status" hidden>瀏覽器目前無法儲存勾選狀態。</p>
+    </section>
+  </main>
+  <footer class="shell">名古屋・高山　｜　2026.12.07–12.12</footer>
+</body>
+</html>
