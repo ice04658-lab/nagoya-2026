@@ -3,38 +3,107 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#faf7ef">
-  <title>名古屋冬日手帳｜2026 名古屋・高山</title>
+  <meta name="theme-color" content="#FFFCF6">
+  <title>名古屋・高山 冬日旅行手帳</title>
   <meta name="description" content="2026 年 12 月名古屋與高山六日行程，附交通、住宿與行李清單。">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&amp;display=swap" media="print" onload="this.media='all'">
   <script src="app.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#content">跳到行程內容</a>
-  <header class="top shell">
-    <a class="brand" href="#overview"><span aria-hidden="true">❄</span> 冬日旅行手帳</a>
-    <a class="packing-link" href="#packing">行李清單 <span aria-hidden="true">↘</span></a>
+  <header class="top">
+    <div class="shell top-inner">
+      <a class="brand" href="#overview"><span aria-hidden="true">❄</span> 冬日手帳</a>
+      <nav aria-label="快捷導覽">
+        <a href="#days">行程</a>
+        <a href="#prep">出發準備</a>
+        <a href="#packing">行李</a>
+      </nav>
+    </div>
   </header>
   <main class="shell" id="content" tabindex="-1">
-    <div class="hero">
+    <section class="hero" id="overview" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">2026 DEC 07–12 · JAPAN</p>
-        <h1>名古屋<span class="hero-dot">・</span>高山<br>冬日小旅行</h1>
-        <p>從名古屋的街道，走到飛驒的雪山。</p>
+        <p class="eyebrow">JAPAN WINTER DIARY</p>
+        <h1 id="hero-title">名古屋・高山<br>冬日旅行手帳</h1>
+        <p class="trip-dates"><time datetime="2026-12-07">2026/12/07</time>～<time datetime="2026-12-12">12/12</time></p>
+        <p class="intro">六天五夜，從名古屋的街道出發，尋訪飛驒古街、新穗高雪山與犬山城。</p>
+        <p class="countdown" id="countdown"></p>
       </div>
-      <div class="landscape" aria-hidden="true">
-        <span class="sun"></span><span class="peak peak-back"></span><span class="peak peak-front"></span>
-        <span class="snow"></span><span class="tree tree-one"></span><span class="tree tree-two"></span>
-        <span class="flake flake-one">✦</span><span class="flake flake-two">✧</span><span class="flake flake-three">✦</span>
-      </div>
-    </div>
-    <nav class="days" aria-label="行程分頁">
+      <figure class="landscape">
+        <svg viewBox="0 0 580 360" role="img" aria-labelledby="art-title" xmlns="http://www.w3.org/2000/svg">
+          <title id="art-title">冬日雪山下，特急列車駛過木造街屋與名古屋電視塔</title>
+          <defs>
+            <path id="flake" d="M-6 0h12M0-6v12m-4-10 8 8m0-8-8 8"/>
+            <g id="pine">
+              <path d="M0 0-16 28h8l-15 20h46L8 28h8Z" fill="#B9DAA5"/>
+              <path d="M0 48v10" fill="none"/>
+            </g>
+          </defs>
+          <rect x="5" y="5" width="570" height="350" rx="24" fill="#E5F1F5" stroke="#3E3A39" stroke-width="4"/>
+          <g stroke="#3E3A39" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="447" cy="79" r="38" fill="#F6D27A"/>
+            <path d="M26 236 149 86l48 53 66-100 104 135 42-44 133 106Z" fill="#A8D3E6"/>
+            <path d="m104 141 45-55 48 53-22 7-14-13-16 15-17-13Zm109-25 50-77 64 83-25-5-11 16-24-19-20 16-15-13Z" fill="#FFFCF6"/>
+            <path d="M7 237q98-23 188-5t162-3q100-24 216-3v104q0 23-23 23H30q-23 0-23-23Z" fill="#FFFCF6"/>
+            <g fill="#F2A497">
+              <path d="M108 216h-53l19-43 5-58h6l6 58Z"/>
+              <path d="M82 114V78m-6 45h13m-17 43h20m-23 17 25 13m-32 4 31-17m-25 41-17 13m45-13 19 13" fill="none"/>
+              <rect x="68" y="138" width="28" height="12" rx="3"/>
+            </g>
+            <use href="#pine" x="130" y="186"/><use href="#pine" x="502" y="188"/>
+            <use href="#pine" transform="translate(535 213) scale(.65)"/>
+            <g>
+              <path d="M177 204h102v55H177z" fill="#F6D27A"/>
+              <path d="M168 205l30-30h58l31 30Z" fill="#F2A497"/>
+              <path d="M202 215v44m25-44v44m27-44v44m-76-31h101m-101 17h101" fill="none"/>
+              <path d="M298 191h89v68h-89z" fill="#F2A497"/>
+              <path d="M287 193l28-33h53l31 33Z" fill="#B9DAA5"/>
+              <path d="M316 204h18v19h-18zm36 0h18v19h-18z" fill="#FFFCF6"/>
+              <path d="M334 259v-22h17v22m-53-29h89" fill="none"/>
+            </g>
+            <path d="M32 288h509M32 300h509" fill="none"/>
+            <g class="train">
+              <path d="M71 274v-21a8 8 0 0 1 8-8h90q22 0 39 20l8 9a7 7 0 0 1-5 11H80a9 9 0 0 1-9-11Z" fill="#F2A497"/>
+              <path d="M83 254h23v13H83zm33 0h23v13h-23zm33 0h19q12 0 23 13h-42z" fill="#FFFCF6"/>
+              <circle cx="98" cy="288" r="6" fill="#3E3A39"/><circle cx="184" cy="288" r="6" fill="#3E3A39"/>
+            </g>
+            <g transform="translate(446 266)">
+              <path d="M11 16V5q0-4 4-4h9q4 0 4 4v11" fill="none"/>
+              <rect y="12" width="39" height="38" rx="8" fill="#F6D27A"/>
+              <path d="M10 15v32m19-32v32M8 51v4m23-4v4" fill="none"/>
+            </g>
+          </g>
+          <g class="flakes" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round">
+            <use href="#flake" x="49" y="57"/><use href="#flake" x="167" y="58"/>
+            <use href="#flake" x="357" y="75"/><use href="#flake" x="527" y="101"/>
+            <use href="#flake" x="470" y="153"/><use href="#flake" x="111" y="326"/>
+            <use href="#flake" x="371" y="324"/>
+          </g>
+        </svg>
+        <figcaption>名古屋・飛驒高山・新穗高</figcaption>
+      </figure>
+    </section>
+    <nav class="days" id="days" aria-label="行程分頁">
       <a href="#overview" aria-current="page">總覽</a>
       <a href="#day-1">12/07</a><a href="#day-2">12/08</a><a href="#day-3">12/09</a>
       <a href="#day-4">12/10</a><a href="#day-5">12/11</a><a href="#day-6">12/12</a>
     </nav>
     <section id="itinerary" aria-labelledby="view-title"></section>
     <noscript><p>請啟用 JavaScript，以查看每日行程及使用行李清單。</p></noscript>
+    <section class="flights" data-overview aria-labelledby="flights-title">
+      <h2 id="flights-title">
+        <svg class="plane" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 18l10-3 7-11 4 1-3 10 7 4-1 3-8-1-5 7-3-1 2-7-9 1z" fill="currentColor" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round"/></svg>
+        航班資訊
+      </h2>
+      <p>時間依行程表列，航班待核實。</p>
+      <div class="flight-grid">
+        <article class="flight"><h3>去程 <time datetime="2026-12-07">2026/12/07</time></h3><p><strong>08:45</strong> 台灣起飛<br><strong>12:30</strong> 抵達中部國際機場</p></article>
+        <article class="flight"><h3>回程 <time datetime="2026-12-12">2026/12/12</time></h3><p><strong>13:15</strong> 中部國際機場起飛返台</p></article>
+      </div>
+      <div class="shortcuts"><a href="#prep">前往出發準備 →</a><a href="#packing">前往行李清單 →</a></div>
+    </section>
     <aside class="ropeway" aria-labelledby="ropeway-title">
       <div class="section-icon" aria-hidden="true">❄</div>
       <div>
@@ -47,12 +116,31 @@
         </div>
       </div>
     </aside>
+    <section id="prep" class="packing" aria-labelledby="prep-title">
+      <div class="section-head">
+        <h2 id="prep-title">出發前待辦</h2>
+        <output id="prep-count" aria-live="polite"></output>
+      </div>
+      <p>進度儲存在這個瀏覽器，不會跨手機同步。</p>
+      <div class="packing-grid">
+        <label><input type="checkbox" value="bookings">確認機票與住宿</label>
+        <label><input type="checkbox" value="takayama">確認 12/8 名古屋 → 高山車票</label>
+        <label><input type="checkbox" value="ropeway">確認 12/9 新穗高巴士及纜車運行</label>
+        <label><input type="checkbox" value="return-train">確認 12/9 高山 → 名古屋 JR 車票</label>
+        <label><input type="checkbox" value="weather">檢查天氣及降雪</label>
+        <label><input type="checkbox" value="winter-gear">準備防滑鞋套、羊毛襪及保暖配件</label>
+        <label><input type="checkbox" value="payment">準備日圓及可海外刷卡的信用卡</label>
+        <label><input type="checkbox" value="esim">設定日本上網 eSIM</label>
+        <label><input type="checkbox" value="offline">下載離線地圖與翻譯工具</label>
+      </div>
+      <p id="prep-status" role="status" hidden>瀏覽器目前無法儲存勾選狀態。</p>
+    </section>
     <section id="packing" class="packing" aria-labelledby="packing-title">
       <div class="section-head">
         <h2 id="packing-title">行李清單</h2>
         <output id="packing-count" aria-live="polite"></output>
       </div>
-      <p>勾選狀態會留在這個瀏覽器。</p>
+      <p>進度儲存在這個瀏覽器，不會跨手機同步。</p>
       <div class="packing-grid">
         <label><input type="checkbox" value="passport">護照</label>
         <label><input type="checkbox" value="documents">機票與住宿資料</label>
