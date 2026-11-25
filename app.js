@@ -211,6 +211,103 @@ function renderCard({ title, transport, items }) {
     </li>`;
 }
 
+
+/* 每日旅行小任務：依當日已排定活動設計，完全不需要多跑景點。 */
+const dailyQuests = [
+  [
+    { id: 'd1-photo', icon: '📸', title: '日本第一張合照', detail: '在熱田神宮或名古屋站附近拍下這趟旅行的第一張合照。' },
+    { id: 'd1-unagi', icon: '🍱', title: '鰻魚飯開箱', detail: '如果有順利用餐，記錄今天的鰻魚飯照片。' },
+    { id: 'd1-wings', icon: '🍗', title: '名古屋手羽先挑戰', detail: '晚餐有機會時，試試名古屋特色炸雞翅。' },
+    { id: 'd1-view', icon: '🌃', title: '夜景尋找亮點', detail: '在 Sky Promenade 找到最喜歡的一片夜景。' },
+    { id: 'd1-souvenir', icon: '🎁', title: '第一份小紀念', detail: '在名古屋站找到一件讓你想帶回家的小物。' }
+  ],
+  [
+    { id: 'd2-beef', icon: '🥩', title: '飛驒牛美食獵人', detail: '在高山吃到一種飛驒牛料理，拍照記錄。' },
+    { id: 'd2-gohei', icon: '🍡', title: '尋找五平餅', detail: '逛古街時找找飛驒地區的五平餅，有賣再試吃。' },
+    { id: 'd2-street', icon: '🏘️', title: '古街繪本取景', detail: '在三町筋拍一張像日系繪本封面的街景照。' },
+    { id: 'd2-goshuin', icon: '📕', title: '神社參拜小紀錄', detail: '到櫻山八幡宮或日枝神社時，記下最喜歡的一個細節；御朱印依授與時間決定。' },
+    { id: 'd2-snack', icon: '🍮', title: '高山甜點尋寶', detail: '在既定老街路線找一款沒吃過的在地甜點。' }
+  ],
+  [
+    { id: 'd3-snow', icon: '❄️', title: '雪山第一張照片', detail: '在開放的安全觀景區拍一張雪景；沒有積雪就改拍山景。' },
+    { id: 'd3-coffee', icon: '☕', title: '山上的暖心一杯', detail: '若店家營業，在山頂喝一杯熱飲。' },
+    { id: 'd3-view', icon: '🏔️', title: '尋找最美山峰', detail: '在西穗高口展望台挑選一座最喜歡的山峰合照。' },
+    { id: 'd3-friend', icon: '🧣', title: '冬日雙人照', detail: '用圍巾或毛帽當主題拍張雙人冬日合照。' },
+    { id: 'd3-peanuts', icon: '🥜', title: '史努比的小驚喜', detail: '如果 PEANUTS Cafe 營業且來得及，找一款最喜歡的主題小物。' }
+  ],
+  [
+    { id: 'd4-chiikawa', icon: '🧸', title: '吉伊卡哇尋寶', detail: '在 PARCO 找到你覺得最可愛的一項吉伊卡哇商品。' },
+    { id: 'd4-osu', icon: '🎮', title: '動漫小店發現', detail: '在大須商店街發現一家以前沒逛過的動漫周邊店。' },
+    { id: 'd4-partner', icon: '💝', title: '替旅伴挑禮物', detail: '在既定購物路線選一件小禮物或拍照推薦給旅伴。' },
+    { id: 'd4-snack', icon: '🍡', title: '大須散步點心', detail: '有遇到感興趣的小吃時，選一款一起分著吃。' },
+    { id: 'd4-loft', icon: '✏️', title: 'LOFT 文具寶藏', detail: '在榮 LOFT 找到最想帶回台灣的一件文具或雜貨。' }
+  ],
+  [
+    { id: 'd5-castle', icon: '🏯', title: '犬山城最佳角度', detail: '在開放參觀區域拍一張最喜歡的犬山城照片。' },
+    { id: 'd5-goshuin', icon: '📕', title: '御朱印收集日', detail: '別小江或三光稻荷神社如有授與，收集一枚御朱印。' },
+    { id: 'd5-dango', icon: '🍡', title: '犬山城下町點心', detail: '找一款犬山城下町看起來最誘人的小點心。' },
+    { id: 'd5-wish', icon: '⛩️', title: '旅程心願', detail: '在參拜時想一個今年最想完成的小目標。' },
+    { id: 'd5-photo', icon: '📷', title: '最後一張名古屋合照', detail: '離開名古屋前，留下你們最喜歡的一張合照。' }
+  ],
+  [
+    { id: 'd6-ebi', icon: '🍤', title: '蝦餅伴手禮達成', detail: '在機場挑選一款蝦餅伴手禮帶回台灣。' },
+    { id: 'd6-favorite', icon: '💌', title: '六天旅行 MVP', detail: '各自選出這趟最喜歡的景點，互相分享原因。' },
+    { id: 'd6-snack', icon: '🛍️', title: '最後的伴手禮', detail: '在登機前確認還有沒有想買的小禮物。' },
+    { id: 'd6-album', icon: '📸', title: '精選三張旅行照', detail: '各自挑出三張最喜歡的旅行照片。' },
+    { id: 'd6-next', icon: '✈️', title: '下一趟旅行願望', detail: '回程時和旅伴聊聊下一次最想去哪裡。' }
+  ]
+];
+const questStoragePrefix = 'nagoya-2026-quest-v1-day-';
+function readQuestState(index) {
+  const key = questStoragePrefix + (index + 1);
+  try {
+    const saved = JSON.parse(localStorage.getItem(key));
+    const validIds = dailyQuests[index].map(quest => quest.id);
+    if (saved && validIds.includes(saved.id)) return { id: saved.id, done: saved.done === true };
+  } catch { /* localStorage 可能未開放，仍可使用本次頁面狀態 */ }
+  return { id: dailyQuests[index][0].id, done: false };
+}
+const questStates = dailyQuests.map((_, index) => readQuestState(index));
+function storeQuestState(index) {
+  try {
+    localStorage.setItem(questStoragePrefix + (index + 1), JSON.stringify(questStates[index]));
+  } catch { /* 保留本次分頁的互動狀態 */ }
+}
+function renderQuest(index) {
+  const state = questStates[index];
+  const quest = dailyQuests[index].find(entry => entry.id === state.id);
+  return `
+    <section class="travel-quest" aria-labelledby="travel-quest-title">
+      <div class="quest-heading">
+        <div>
+          <p class="quest-eyebrow">DAY ${index + 1} · BONUS QUEST</p>
+          <h3 id="travel-quest-title">🎲 今日旅行小挑戰</h3>
+        </div>
+        <span class="quest-state">${state.done ? '🎉 已完成' : '✨ 等你解鎖'}</span>
+      </div>
+      <p class="quest-name">${quest.icon} ${escapeHtml(quest.title)}</p>
+      <p class="quest-detail">${escapeHtml(quest.detail)}</p>
+      <div class="quest-actions">
+        <label class="quest-check">
+          <input type="checkbox" data-quest-done="${index}" ${state.done ? 'checked' : ''}>
+          <span>任務完成！</span>
+        </label>
+        <button type="button" class="quest-reroll" data-quest-reroll="${index}">🎲 換一題</button>
+      </div>
+      <p class="quest-help">純趣味挑戰，不必為了完成任務繞路或影響趕車。進度只保存在這支手機。</p>
+    </section>`;
+}
+function rerollQuest(index) {
+  const state = questStates[index];
+  const alternatives = dailyQuests[index].filter(quest => quest.id !== state.id);
+  if (alternatives.length === 0) return;
+  const next = alternatives[Math.floor(Math.random() * alternatives.length)];
+  questStates[index] = { id: next.id, done: false };
+  storeQuestState(index);
+  const card = itinerary.querySelector('.travel-quest');
+  if (card) card.outerHTML = renderQuest(index);
+}
+
 function renderDay(day, index) {
   return `
     <div class="section-head"><h2 id="view-title" tabindex="-1">${escapeHtml(day.title)}</h2><span class="mini">DAY ${index + 1} · ${escapeHtml(day.date)}（${escapeHtml(day.weekday)}）</span></div>
@@ -218,6 +315,7 @@ function renderDay(day, index) {
     <ol class="timeline route-enter" role="list" aria-label="每日時間軸">
       ${day.cards.map(renderCard).join('')}
     </ol>
+    ${renderQuest(index)}
     ${day.sources ? `<section class="trip-note">
       <h3>交通與營運查詢</h3>
       <div class="actions">${day.sources.map(([label, url]) =>
@@ -258,6 +356,18 @@ function renderRoute(moveFocus = false) {
 
 renderRoute();
 window.addEventListener('hashchange', () => renderRoute(true));
+itinerary.addEventListener('click', event => {
+  const button = event.target.closest('[data-quest-reroll]');
+  if (button) rerollQuest(Number(button.dataset.questReroll));
+});
+itinerary.addEventListener('change', event => {
+  if (!event.target.matches('[data-quest-done]')) return;
+  const index = Number(event.target.dataset.questDone);
+  questStates[index].done = event.target.checked;
+  storeQuestState(index);
+  const card = itinerary.querySelector('.travel-quest');
+  if (card) card.outerHTML = renderQuest(index);
+});
 
 const taipeiDate = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit'
