@@ -15,7 +15,7 @@ const days = [
     date: '12/07', weekday: '一', city: '名古屋', title: '抵達名古屋',
     summary: '熱田神宮、鰻魚飯與名古屋站夜景。',
     stay: via, hotelMap: via,
-    sources: [meitetsu, ['中部國際機場', 'https://www.centrair.jp/']],
+    sources: [meitetsu, ['中部國際機場', 'https://www.centrair.jp/'], ['MOOMIN SHOP NAGOYA 官方資訊', 'https://www.moomin.co.jp/shops/moominshop/nagoya']],
     cards: [
       { title: '台北 → 中部國際機場', transport: '飛機', items: [
         ['08:45', '台灣虎航 IT206｜桃園國際機場第一航廈（T1）起飛', '出發機場、航廈與報到櫃檯請依電子機票及航空公司公告再次確認。'],
@@ -33,7 +33,8 @@ const days = [
       ] },
       { title: '飯店 Check-in', items: [['18:00', via, '', via]] },
       { title: '名古屋站購物與夜景', items: [
-        ['19:00', 'JR Gate Tower', '逛街購物。', 'JR Gate Tower 名古屋'],
+        ['19:00', 'JR Gate Tower', '逛街購物；MOOMIN 官方專賣店就在同棟 Takashimaya Gate Tower Mall。', 'JR Gate Tower 名古屋'],
+        ['19:00 同區順逛', '🛍️ MOOMIN SHOP NAGOYA（姆明官方專賣店）', 'Takashimaya Gate Tower Mall 6F，官方營業時間 10:00–20:00。建議優先逛這間再看夜景；實際閉店或入場限制請當日確認。', 'MOOMIN SHOP NAGOYA 名古屋 ゲートタワーモール 6F'],
         ['20:00', 'Sky Promenade', '看夜景。營業時間、最晚入場及票價待確認。', 'Sky Promenade Midland Square 名古屋']
       ] },
       { title: '居酒屋吃炸雞翅', items: [['21:00', '店家待確認']] },
@@ -95,14 +96,15 @@ const days = [
     date: '12/10', weekday: '四', city: '名古屋・榮', title: '大須與榮購物日',
     summary: '大須商店街、PARCO、榮商圈與溫泉浴場。',
     stay: vessel, hotelMap: vesselMap,
-    sources: [['名古屋市交通局', 'https://www.kotsu.city.nagoya.jp/']],
+    sources: [['名古屋市交通局', 'https://www.kotsu.city.nagoya.jp/'], ['吉伊卡哇專賣店（PARCO 東館 3F）', 'https://nagoya.parco.jp/shop/detail/?cd=028146'], ['魔法吉伊卡哇主題店（東館 B1F）', 'https://nagoya.parco.jp/shop/detail/?cd=029195']],
     cards: [
       { title: '大須散策', items: [
         ['09:00', '大須觀音寺', '📕 御朱印收集提醒（寺院）：確認納經所受理時間與納經料。', '大須観音'],
         ['10:00', '大須商店街', '逛動漫商品店，可分頭逛。', '大須商店街']
       ] },
       { title: '名古屋 PARCO', items: [
-        ['12:00', '一起先逛吉伊卡哇', '門市與開放時間待確認。', 'ちいかわらんど 名古屋パルコ'],
+        ['12:00', '🧸 ちいかわらんど 名古屋 PARCO 店（吉伊卡哇官方專賣店）', '名古屋 PARCO 東館 3F，館內基本營業時間 10:00–20:00；部分新品或活動可能需事前預約入場，出發前查看官方公告。', 'ちいかわらんど 名古屋パルコ 東館 3F'],
+        ['同棟順逛', '✨ まじかるちいかわストア（魔法吉伊卡哇）', '名古屋 PARCO 東館 B1F，為另一間主題商店；先確認當日營業、活動檔期及入場規則。', 'まじかるちいかわストア 名古屋パルコ 東館 B1F'],
         ['13:00', '西館流行美妝、東館 IP 商品', '可分頭逛，店家與營業時間待確認。', '', [['PARCO 西館', '名古屋PARCO 西館'], ['PARCO 東館', '名古屋PARCO 東館']]]
       ] },
       { title: '榮商圈購物', items: [
