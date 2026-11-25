@@ -1,4 +1,4 @@
-const cacheName = 'nagoya-2026-v3';
+const cacheName = 'nagoya-2026-v4-quests';
 const files = ['./', './style.css', './app.js'];
 const assetUrls = files.slice(1).map(file => new URL(file, self.registration.scope).href);
 
@@ -7,7 +7,11 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil((async () => {
+    const names = await caches.keys();
+    await Promise.all(names.filter(name => name.startsWith('nagoya-2026-') && name !== cacheName).map(name => caches.delete(name)));
+    await self.clients.claim();
+  })());
 });
 
 self.addEventListener('fetch', event => {
