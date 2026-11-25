@@ -1,4 +1,4 @@
-const cacheName = 'nagoya-2026-v4-quests';
+const cacheName = 'nagoya-2026-v5-landmark-quests';
 const files = ['./', './style.css', './app.js'];
 const assetUrls = files.slice(1).map(file => new URL(file, self.registration.scope).href);
 

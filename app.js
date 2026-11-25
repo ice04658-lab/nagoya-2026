@@ -219,42 +219,95 @@ const dailyQuests = [
     { id: 'd1-unagi', icon: '🍱', title: '鰻魚飯開箱', detail: '如果有順利用餐，記錄今天的鰻魚飯照片。' },
     { id: 'd1-wings', icon: '🍗', title: '名古屋手羽先挑戰', detail: '晚餐有機會時，試試名古屋特色炸雞翅。' },
     { id: 'd1-view', icon: '🌃', title: '夜景尋找亮點', detail: '在 Sky Promenade 找到最喜歡的一片夜景。' },
-    { id: 'd1-souvenir', icon: '🎁', title: '第一份小紀念', detail: '在名古屋站找到一件讓你想帶回家的小物。' }
+    { id: 'd1-souvenir', icon: '🎁', title: '第一份小紀念', detail: '在名古屋站找到一件讓你想帶回家的小物。' },
+    { id: 'd1-extra-airport', icon: '🛬', title: '抵達紀念', detail: '在中部機場拍一張落地紀念照' },
+    { id: 'd1-extra-atsuta', icon: '⛩️', title: '熱田神宮參道', detail: '拍下參道最喜歡的大樹' },
+    { id: 'd1-extra-goshuin', icon: '📕', title: '熱田御朱印', detail: '若授與所開放就收集御朱印' },
+    { id: 'd1-extra-unagi', icon: '🍱', title: '鰻魚飯三吃', detail: '在蓬萊軒試試加佐料及茶泡飯' },
+    { id: 'd1-extra-gate', icon: '🛍️', title: 'Gate Tower 尋寶', detail: '選一件想推薦給旅伴的商品' },
+    { id: 'd1-extra-piyorin', icon: '🐤', title: '小雞甜點', detail: '名古屋站若遇 Piyorin 就拍照，售完跳過' },
+    { id: 'd1-extra-sky', icon: '🌃', title: '夜景找地標', detail: '從 Sky Promenade 找一個去過的地標' },
+    { id: 'd1-extra-tenmusu', icon: '🍙', title: '天むす', detail: '在既定路線遇到天婦羅飯糰就試吃' }
   ],
   [
     { id: 'd2-beef', icon: '🥩', title: '飛驒牛美食獵人', detail: '在高山吃到一種飛驒牛料理，拍照記錄。' },
     { id: 'd2-gohei', icon: '🍡', title: '尋找五平餅', detail: '逛古街時找找飛驒地區的五平餅，有賣再試吃。' },
     { id: 'd2-street', icon: '🏘️', title: '古街繪本取景', detail: '在三町筋拍一張像日系繪本封面的街景照。' },
     { id: 'd2-goshuin', icon: '📕', title: '神社參拜小紀錄', detail: '到櫻山八幡宮或日枝神社時，記下最喜歡的一個細節；御朱印依授與時間決定。' },
-    { id: 'd2-snack', icon: '🍮', title: '高山甜點尋寶', detail: '在既定老街路線找一款沒吃過的在地甜點。' }
+    { id: 'd2-snack', icon: '🍮', title: '高山甜點尋寶', detail: '在既定老街路線找一款沒吃過的在地甜點。' },
+    { id: 'd2-extra-market', icon: '🍎', title: '宮川朝市尋寶', detail: '找一種飛驒在地農產品' },
+    { id: 'd2-extra-sarubobo', icon: '🔴', title: '飛驒娃娃', detail: '在三町筋找到一個さるぼぼ' },
+    { id: 'd2-extra-beefsushi', icon: '🥩', title: '飛驒牛壽司', detail: '有營業攤位時試吃飛驒牛握壽司' },
+    { id: 'd2-extra-sake', icon: '🍶', title: '酒藏杉玉', detail: '找古街酒藏門口的杉玉裝飾' },
+    { id: 'd2-extra-dango', icon: '🍡', title: '高山醬油糰子', detail: '有營業時試試醬油烤糰子' },
+    { id: 'd2-extra-hachimangu', icon: '⛩️', title: '櫻山八幡宮', detail: '找到最喜歡的參道或社殿細節' },
+    { id: 'd2-extra-hie', icon: '🌲', title: '日枝神社', detail: '觀察神社的森林景色' },
+    { id: 'd2-extra-inari', icon: '🦊', title: '陣屋稻荷', detail: '找找狐狸或稻荷相關元素' },
+    { id: 'd2-extra-mikado', icon: '🍽️', title: 'Mikado 備案', detail: '若改選 Mikado 用餐，記下最好吃的一道菜' },
+    { id: 'd2-extra-bull', icon: '🥘', title: 'Dining Bull', detail: '選出當晚最喜歡的餐點' }
   ],
   [
     { id: 'd3-snow', icon: '❄️', title: '雪山第一張照片', detail: '在開放的安全觀景區拍一張雪景；沒有積雪就改拍山景。' },
     { id: 'd3-coffee', icon: '☕', title: '山上的暖心一杯', detail: '若店家營業，在山頂喝一杯熱飲。' },
     { id: 'd3-view', icon: '🏔️', title: '尋找最美山峰', detail: '在西穗高口展望台挑選一座最喜歡的山峰合照。' },
     { id: 'd3-friend', icon: '🧣', title: '冬日雙人照', detail: '用圍巾或毛帽當主題拍張雙人冬日合照。' },
-    { id: 'd3-peanuts', icon: '🥜', title: '史努比的小驚喜', detail: '如果 PEANUTS Cafe 營業且來得及，找一款最喜歡的主題小物。' }
+    { id: 'd3-peanuts', icon: '🥜', title: '史努比的小驚喜', detail: '如果 PEANUTS Cafe 營業且來得及，找一款最喜歡的主題小物。' },
+    { id: 'd3-extra-bus', icon: '🚌', title: '雪國車窗', detail: '安全地欣賞高山往新穗高的山景' },
+    { id: 'd3-extra-ropeway', icon: '🚡', title: '纜車觀景', detail: '找出窗外最壯觀的一幕' },
+    { id: 'd3-extra-summit', icon: '🏔️', title: '山頂合照', detail: '在開放觀景區留下雪山紀念照' },
+    { id: 'd3-extra-forest', icon: '🌲', title: '頂之森', detail: '如開放且路面安全，找槍之迴廊的景色' },
+    { id: 'd3-extra-gokan', icon: '☕', title: 'GOKAN 熱飲', detail: 'CAFÉ GOKAN 有營業時喝杯熱飲' },
+    { id: 'd3-extra-wood', icon: '🪵', title: '山頂木作', detail: '在商店尋找飛驒木工特色小物' },
+    { id: 'd3-extra-mirai', icon: '🗼', title: 'MIRAI TOWER', detail: '在榮商圈拍一張電視塔夜景' },
+    { id: 'd3-extra-peanuts-decor', icon: '🥜', title: 'PEANUTS 裝飾', detail: '若咖啡廳有營業，找到喜歡的角色裝飾' },
+    { id: 'd3-extra-jr', icon: '🚆', title: 'JR 車窗收藏', detail: '回名古屋時拍下沿途風景' }
   ],
   [
     { id: 'd4-chiikawa', icon: '🧸', title: '吉伊卡哇尋寶', detail: '在 PARCO 找到你覺得最可愛的一項吉伊卡哇商品。' },
     { id: 'd4-osu', icon: '🎮', title: '動漫小店發現', detail: '在大須商店街發現一家以前沒逛過的動漫周邊店。' },
     { id: 'd4-partner', icon: '💝', title: '替旅伴挑禮物', detail: '在既定購物路線選一件小禮物或拍照推薦給旅伴。' },
     { id: 'd4-snack', icon: '🍡', title: '大須散步點心', detail: '有遇到感興趣的小吃時，選一款一起分著吃。' },
-    { id: 'd4-loft', icon: '✏️', title: 'LOFT 文具寶藏', detail: '在榮 LOFT 找到最想帶回台灣的一件文具或雜貨。' }
+    { id: 'd4-loft', icon: '✏️', title: 'LOFT 文具寶藏', detail: '在榮 LOFT 找到最想帶回台灣的一件文具或雜貨。' },
+    { id: 'd4-extra-kannon', icon: '📕', title: '大須觀音御朱印', detail: '若納經所開放就收集御朱印' },
+    { id: 'd4-extra-street', icon: '🏮', title: '大須街景', detail: '拍下最熱鬧的商店街角落' },
+    { id: 'd4-extra-uirou', icon: '🍡', title: '外郎糕', detail: '遇到營業店家時試吃ういろう' },
+    { id: 'd4-extra-miso', icon: '🍢', title: '味噌串炸', detail: '在大須有營業的店家試試味噌串カツ' },
+    { id: 'd4-extra-parco', icon: '🧸', title: 'PARCO 角色店', detail: '找到最可愛的角色商品' },
+    { id: 'd4-extra-beauty', icon: '💄', title: 'PARCO 西館美妝', detail: '找一件喜歡的日本美妝' },
+    { id: 'd4-extra-gu', icon: '👕', title: 'GU 選物', detail: '找一件實穿的平價衣服' },
+    { id: 'd4-extra-uniqlo', icon: '🧦', title: 'UNIQLO 選物', detail: '找一件適合冬季的服飾' },
+    { id: 'd4-extra-loft', icon: '✏️', title: 'LOFT 文具', detail: '找到有趣的日本文具' },
+    { id: 'd4-extra-hotel', icon: '🧳', title: '整理戰利品', detail: '回飯店後整理並拍照' },
+    { id: 'd4-extra-pichiten', icon: '🍤', title: 'ぴち天 美食', detail: '若有用餐，選一道最推薦的料理' }
   ],
   [
     { id: 'd5-castle', icon: '🏯', title: '犬山城最佳角度', detail: '在開放參觀區域拍一張最喜歡的犬山城照片。' },
     { id: 'd5-goshuin', icon: '📕', title: '御朱印收集日', detail: '別小江或三光稻荷神社如有授與，收集一枚御朱印。' },
     { id: 'd5-dango', icon: '🍡', title: '犬山城下町點心', detail: '找一款犬山城下町看起來最誘人的小點心。' },
     { id: 'd5-wish', icon: '⛩️', title: '旅程心願', detail: '在參拜時想一個今年最想完成的小目標。' },
-    { id: 'd5-photo', icon: '📷', title: '最後一張名古屋合照', detail: '離開名古屋前，留下你們最喜歡的一張合照。' }
+    { id: 'd5-photo', icon: '📷', title: '最後一張名古屋合照', detail: '離開名古屋前，留下你們最喜歡的一張合照。' },
+    { id: 'd5-extra-wakeoe', icon: '📕', title: '別小江御朱印', detail: '如果授與所開放就挑一款御朱印' },
+    { id: 'd5-extra-decor', icon: '🌸', title: '別小江佈置', detail: '拍最喜歡的季節裝飾' },
+    { id: 'd5-extra-town', icon: '🍡', title: '犬山城下町串點心', detail: '試吃串糰子或五平餅' },
+    { id: 'd5-extra-heart-sweet', icon: '💕', title: '愛心小點', detail: '找找愛心形狀和菓子' },
+    { id: 'd5-extra-sanko', icon: '💗', title: '三光稻荷繪馬', detail: '拍下愛心繪馬' },
+    { id: 'd5-extra-torii', icon: '⛩️', title: '朱紅鳥居', detail: '在三光稻荷拍鳥居' },
+    { id: 'd5-extra-castle', icon: '🏯', title: '犬山城天守', detail: '如開放就拍一張天守照片' },
+    { id: 'd5-extra-river', icon: '🌊', title: '木曾川', detail: '從安全位置觀賞河景' },
+    { id: 'd5-extra-souvenir', icon: '🎁', title: '犬山小物', detail: '挑一件城下町特色小物' },
+    { id: 'd5-extra-hotel', icon: '🧳', title: '機場飯店達陣', detail: '完成取行李與轉乘' }
   ],
   [
     { id: 'd6-ebi', icon: '🍤', title: '蝦餅伴手禮達成', detail: '在機場挑選一款蝦餅伴手禮帶回台灣。' },
     { id: 'd6-favorite', icon: '💌', title: '六天旅行 MVP', detail: '各自選出這趟最喜歡的景點，互相分享原因。' },
     { id: 'd6-snack', icon: '🛍️', title: '最後的伴手禮', detail: '在登機前確認還有沒有想買的小禮物。' },
     { id: 'd6-album', icon: '📸', title: '精選三張旅行照', detail: '各自挑出三張最喜歡的旅行照片。' },
-    { id: 'd6-next', icon: '✈️', title: '下一趟旅行願望', detail: '回程時和旅伴聊聊下一次最想去哪裡。' }
+    { id: 'd6-next', icon: '✈️', title: '下一趟旅行願望', detail: '回程時和旅伴聊聊下一次最想去哪裡。' },
+    { id: 'd6-extra-ebi', icon: '🍤', title: '蝦煎餅之里', detail: '時間允許才去 T1 購物區，勿耽誤 T2 報到' },
+    { id: 'd6-extra-gift', icon: '🎁', title: '最後伴手禮', detail: '挑一件名古屋限定點心' },
+    { id: 'd6-extra-checkin', icon: '✈️', title: 'T2 報到', detail: '確認 IT207 櫃檯與託運' },
+    { id: 'd6-extra-rank', icon: '🏆', title: '六天前三名', detail: '選出最好吃最好玩最好買' },
+    { id: 'd6-extra-album', icon: '📸', title: '旅行代表照', detail: '挑出名古屋高山雪山各一張照片' }
   ]
 ];
 const questStoragePrefix = 'nagoya-2026-quest-v1-day-';
@@ -280,7 +333,7 @@ function renderQuest(index) {
     <section class="travel-quest" aria-labelledby="travel-quest-title">
       <div class="quest-heading">
         <div>
-          <p class="quest-eyebrow">DAY ${index + 1} · BONUS QUEST</p>
+          <p class="quest-eyebrow">DAY ${index + 1} · BONUS QUEST · ${dailyQuests[index].length} 題抽選</p>
           <h3 id="travel-quest-title">🎲 今日旅行小挑戰</h3>
         </div>
         <span class="quest-state">${state.done ? '🎉 已完成' : '✨ 等你解鎖'}</span>
