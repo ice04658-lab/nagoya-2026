@@ -222,3 +222,49 @@ footer { color: var(--muted); font-size: .8rem; padding: 26px 0; text-align: cen
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* 每日旅行小任務：維持 V3 手繪色彩，單欄手機優先 */
+.travel-quest {
+  margin: 18px 0 8px;
+  padding: clamp(15px, 3vw, 23px);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  background: #FFF8EA;
+}
+.quest-heading, .quest-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.quest-heading { justify-content: space-between; }
+.quest-heading h3 { font-size: 1.2rem; margin: .2rem 0; color: var(--ink); }
+.quest-eyebrow { font-weight: 700; font-size: .74rem; letter-spacing: .08em; }
+.quest-state {
+  background: var(--green);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: .15rem .6rem;
+  font-size: .82rem;
+  font-weight: 700;
+}
+.quest-name { margin-top: 12px; color: var(--ink); font-size: 1.1rem; font-weight: 700; }
+.quest-detail { margin-top: 4px; }
+.quest-actions { margin-top: 14px; }
+.quest-check, .quest-reroll {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 8px 13px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+}
+.quest-check { background: var(--green); }
+.quest-reroll { background: var(--yellow); }
+.quest-check input { width: 18px; height: 18px; margin: 0; accent-color: var(--ink); }
+.quest-help { font-size: .8rem; margin-top: 10px; }
+.quest-check:focus-within, .quest-reroll:focus-visible { outline: 3px solid #266980; outline-offset: 2px; }
+@media (max-width: 350px) {
+  .quest-actions > * { width: 100%; }
+}
