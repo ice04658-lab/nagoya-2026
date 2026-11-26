@@ -1,4 +1,4 @@
-const cacheName = 'nagoya-2026-v6-reservations-shopping';
+const cacheName = 'nagoya-2026-v7-checklists-offline';
 const files = ['./', './style.css', './app.js'];
 const assetUrls = files.slice(1).map(file => new URL(file, self.registration.scope).href);
 
