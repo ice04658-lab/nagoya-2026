@@ -107,7 +107,7 @@ const days = [
     date: '12/10', weekday: '四', city: '名古屋・榮', title: '大須與榮購物日',
     summary: '大須商店街、PARCO、榮商圈與溫泉浴場。',
     stay: vessel, hotelMap: vesselMap,
-    sources: [['名古屋市交通局', 'https://www.kotsu.city.nagoya.jp/'], ['PG馬麻｜#C-pla 名古屋大須店官方商店街介紹', 'https://osu.nagoya/ja/shop.php?s=NKA9aK'], ['PG馬麻｜よっちゃん小吃店商店街介紹', 'https://www.kinsyachi.com/shop/yochan/'], ['大須駿河屋官方店鋪', 'https://www.suruga-ya.jp/feature/realstore/osu_main/index.html'], ['MANDARAKE 名古屋官方店鋪', 'https://www.mandarake.co.jp/dir/ngy/index-en.html'], ['らしんばん大須官方店鋪', 'https://www.lashinbang.com/store/38/'], ['Gamers 名古屋官方店鋪', 'https://www.gamers.co.jp/shop/detail.php?id=12'], ['Gee! Store 名古屋官方店鋪', 'https://www.geestore.com/geenet/geestore/nagoya'], ['吉伊卡哇專賣店（PARCO 東館 3F）', 'https://nagoya.parco.jp/shop/detail/?cd=028146'], ['魔法吉伊卡哇主題店（東館 B1F）', 'https://nagoya.parco.jp/shop/detail/?cd=029195']],
+    sources: [['名古屋市交通局', 'https://www.kotsu.city.nagoya.jp/'], ['PG馬麻｜#C-pla 名古屋大須店官方商店街介紹', 'https://mail.nagoya-info.jp/souvenir/detail/96/'], ['PG馬麻｜よっちゃん小吃店商店街介紹', 'https://www.kinsyachi.com/shop/yochan/'], ['大須駿河屋官方店鋪', 'https://www.suruga-ya.jp/feature/realstore/osu_main/index.html'], ['MANDARAKE 名古屋官方店鋪', 'https://www.mandarake.co.jp/dir/ngy/index-en.html'], ['らしんばん大須官方店鋪', 'https://www.lashinbang.com/store/38/'], ['Gamers 名古屋官方店鋪', 'https://www.gamers.co.jp/shop/detail.php?id=12'], ['Gee! Store 名古屋官方店鋪', 'https://www.geestore.com/geenet/geestore/nagoya'], ['吉伊卡哇專賣店（PARCO 東館 3F）', 'https://nagoya.parco.jp/shop/detail/?cd=028146'], ['魔法吉伊卡哇主題店（東館 B1F）', 'https://nagoya.parco.jp/shop/detail/?cd=029195']],
     cards: [
       { title: '大須散策｜團員分頭逛', items: [
         ['09:00', '大須觀音寺', '📕 御朱印收集提醒（寺院）：確認納經所受理時間與納經料；先一起參拜再分頭行動。', '大須観音'],
@@ -123,7 +123,7 @@ const days = [
       { title: '🎮 AD把拔｜大須動漫同人必逛', items: [
         ['必逛', '駿河屋 名古屋大須本館', '大須3-32-23，3F–5F；10:00–21:00。動漫、遊戲及同人相關樓層。', '駿河屋 名古屋大須本館'],
         ['必逛・時間衝突提醒', 'MANDARAKE 名古屋店', '大須3-18-21；官網營業 12:00–20:00。原本預計 12:00 前離開大須去 PARCO，因此無法在 10:00–12:00 完成此店；若要必逛，須延後 PARCO 行程或另排時間。', 'まんだらけ 名古屋店'],
-        ['必逛', 'らしんばん 名古屋大須店', '大須3-10-35 MultinaBox 2F；動漫周邊、同人商品。', 'らしんばん 名古屋大須店'],
+        ['必逛', 'らしんばん 名古屋大須店', '大須3-10-35 MultinaBox 2F；動漫周邊、同人商品。請留意實際開門時間與停留時間。', 'らしんばん 名古屋大須店'],
         ['必逛', 'Gamers 名古屋店', '大須3-30-40 萬松寺大樓 1F；官方資訊營業 10:00–21:00。', 'ゲーマーズ 名古屋店'],
         ['有時間再逛', 'Gee! Store 名古屋', '大須3-11-34；平日 11:00–20:00，服飾／角色周邊。', 'ジーストア 名古屋']
       ] },
@@ -166,7 +166,7 @@ const days = [
     sources: [['中部國際機場', 'https://www.centrair.jp/'], ['蝦仙貝之里｜T1 Sky Town 官方店鋪資訊', 'https://www.centrair.jp/tzh/shop-dine/shop/ebisenbei.html'], ['T1／T2 航廈接駁資訊', 'https://www.centrair.jp/en/access/bus.html']],
     cards: [
       { title: '機場採買｜先 T1、再 T2', items: [
-        ['10:00（暫定）', '🍤 蝦仙貝之里（えびせんべいの里）', '✅ 位置：中部國際機場第一航廈 T1，4F Sky Town 商店與餐廳區。實際營業時間、庫存及排隊狀況請當日確認；留意購物時間。', 'えびせんべいの里 セントレア 4F スカイタウン'],
+        ['10:00（暫定）', '🍤 蝦仙貝之里（えびせんべいの里）', '✅ 位置：中部國際機場第一航廈 T1，4F Sky Town ちょうちん横丁；官方營業時間 08:00–21:00。實際營業、庫存及排隊請當日確認；留意購物時間。', 'えびせんべいの里 セントレア 4F スカイタウン'],
         ['買完立即前往 T2', '🚶／🚌 轉往第二航廈辦理虎航 IT207 報到', '你的回程班機從 T2 起飛。T1 Access Plaza 與 T2 間有接駁巴士，也可依官方指示步行；務必預留跨航廈、排隊、託運及安檢時間，不要為了蝦餅耽誤班機。', '中部国際空港 第2ターミナル']
       ] },
       { title: '中部國際機場 → 台灣', transport: '飛機', items: [
