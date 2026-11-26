@@ -489,33 +489,109 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('pageshow', updateCountdown);
 
 function setupChecklist(id) {
-  const checklist = document.getElementById(id);
-  const items = [...checklist.querySelectorAll('input')];
-  const count = document.getElementById(`${id}-count`);
-  const storageStatus = document.getElementById(`${id}-status`);
-  const storageKey = `nagoya-2026-${id}`;
+  const section = document.getElementById(id);
+  const grid = section.querySelector('.packing-grid');
+  const count = document.getElementById(id + '-count');
+  const status = document.getElementById(id + '-status');
+  const form = document.getElementById(id + '-add-form');
+  const input = document.getElementById(id + '-new-item');
+  const reset = document.getElementById(id + '-clear');
+  const checkedKey = 'nagoya-2026-' + id; // 保留 V3 原本勾選資料
+  const customKey = checkedKey + '-custom-v1';
+  const builtInIds = new Set([...grid.querySelectorAll('input[type="checkbox"]')].map(el => el.value));
+  let checked = [];
+  let customItems = [];
+
+  function warnStorage() { status.hidden = false; }
   try {
-    const saved = JSON.parse(localStorage.getItem(storageKey));
-    if (Array.isArray(saved)) items.forEach(item => { item.checked = saved.includes(item.value); });
-  } catch {
-    storageStatus.hidden = false;
+    const previous = JSON.parse(localStorage.getItem(checkedKey));
+    if (Array.isArray(previous)) checked = previous.filter(x => typeof x === 'string');
+    const previousCustom = JSON.parse(localStorage.getItem(customKey));
+    if (Array.isArray(previousCustom)) {
+      const seen = new Set();
+      customItems = previousCustom.filter(x => {
+        if (!x || typeof x.id !== 'string' || typeof x.text !== 'string' ||
+            !x.id.startsWith('custom:') || seen.has(x.id) || builtInIds.has(x.id) ||
+            !x.text.trim() || x.text.length > 70) return false;
+        seen.add(x.id);
+        return true;
+      }).slice(0, 100);
+    }
+  } catch { warnStorage(); }
+
+  function makeCustomRow(item) {
+    const row = document.createElement('div');
+    row.className = 'custom-checklist-row';
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.value = item.id;
+    checkbox.checked = checked.includes(item.id);
+    label.append(checkbox, document.createTextNode(item.text));
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'custom-item-remove';
+    remove.dataset.removeItem = item.id;
+    remove.setAttribute('aria-label', '移除自訂項目：' + item.text);
+    remove.textContent = '×';
+    row.append(label, remove);
+    return row;
   }
+  customItems.forEach(item => grid.append(makeCustomRow(item)));
 
   function updateCount() {
-    const checked = items.filter(item => item.checked).map(item => item.value);
-    count.textContent = `已勾選 ${checked.length} / ${items.length}`;
-    return checked;
+    const all = [...grid.querySelectorAll('input[type="checkbox"]')];
+    count.textContent = '已勾選 ' + all.filter(x => x.checked).length + ' / ' + all.length;
   }
-
-  updateCount();
-  checklist.addEventListener('change', () => {
-    const checked = updateCount();
+  function save() {
+    checked = [...grid.querySelectorAll('input[type="checkbox"]:checked')].map(x => x.value);
+    updateCount();
     try {
-      localStorage.setItem(storageKey, JSON.stringify(checked));
-      storageStatus.hidden = true;
-    } catch {
-      storageStatus.hidden = false;
+      localStorage.setItem(checkedKey, JSON.stringify(checked));
+      localStorage.setItem(customKey, JSON.stringify(customItems));
+      status.hidden = true;
+    } catch { warnStorage(); }
+  }
+  grid.querySelectorAll('input[type="checkbox"]').forEach(x => { x.checked = checked.includes(x.value); });
+  updateCount();
+
+  grid.addEventListener('change', event => {
+    if (event.target.matches('input[type="checkbox"]')) save();
+  });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const name = input.value.trim().replace(/\s+/g, ' ');
+    if (!name) return;
+    if (name.length > 70 || customItems.length >= 100) {
+      input.setCustomValidity('每項最多 70 字，自訂項目最多 100 筆');
+      input.reportValidity();
+      return;
     }
+    if (customItems.some(item => item.text === name)) {
+      input.setCustomValidity('這個自訂項目已存在');
+      input.reportValidity();
+      return;
+    }
+    input.setCustomValidity('');
+    const item = { id: 'custom:' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9), text: name };
+    customItems.push(item);
+    grid.append(makeCustomRow(item));
+    form.reset();
+    save();
+    input.focus();
+  });
+  input.addEventListener('input', () => input.setCustomValidity(''));
+  grid.addEventListener('click', event => {
+    const button = event.target.closest('[data-remove-item]');
+    if (!button) return;
+    const idToRemove = button.dataset.removeItem;
+    customItems = customItems.filter(item => item.id !== idToRemove);
+    button.closest('.custom-checklist-row').remove();
+    save();
+  });
+  reset.addEventListener('click', () => {
+    grid.querySelectorAll('input[type="checkbox"]').forEach(x => { x.checked = false; });
+    save();
   });
 }
 
@@ -523,9 +599,21 @@ setupChecklist('packing');
 setupChecklist('prep');
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(error => {
+  const offlineStatus = document.querySelector('#offline-status');
+  window.addEventListener('load', async () => {
+    try {
+      await navigator.serviceWorker.register('./sw.js');
+      await navigator.serviceWorker.ready;
+      const version = 'nagoya-2026-v7-checklists-offline';
+      const cache = await caches.open(version);
+      const urls = ['./', './style.css', './app.js'].map(path => new URL(path, location.href).href);
+      const stored = await Promise.all(urls.map(url => cache.match(url)));
+      if (stored.every(Boolean)) {
+        offlineStatus.textContent = '✅ 行程主頁、樣式與程式已備妥離線快取；Google Maps 及外部網站仍需連線。';
+      }
+    } catch (error) {
       console.warn('離線快取無法啟用', error);
-    });
+      offlineStatus.textContent = '📡 離線快取尚未完成，請連線後重新開啟網站。';
+    }
   });
 }
