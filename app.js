@@ -9,6 +9,12 @@ const ropeway = '新穗高纜車站';
 const jr = ['JR 東海時刻資訊', 'https://railway.jr-central.co.jp/time-schedule/'];
 const meitetsu = ['名鐵列車資訊', 'https://www.meitetsu.co.jp/'];
 const nohi = ['濃飛巴士路線', 'https://www.nouhibus.co.jp/route_bus/shinhotaka-line/'];
+// 外部網址僅連接已知 HTTPS 來源，不能把未解析分享短網址當成已核實的餐廳地址。
+function externalLink(label, url) {
+  const parsed = new URL(url);
+  if (parsed.protocol !== 'https:') return '';
+  return `<a href="${escapeHtml(parsed.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)} ↗</a>`;
+}
 
 const days = [
   {
@@ -35,11 +41,11 @@ const days = [
         ['18:00', via, '📚 AD把拔想逛：Melonbooks 名古屋店就在名古屋站太閤通口側（椿町 21-2 一帶）；若有時間可順路，營業時間與實際店址請當日再核對。', via, [['AD把拔｜Melonbooks 名古屋店', 'メロンブックス 名古屋店 椿町21-2']]]
       ] },
       { title: '名古屋站購物與夜景', items: [
-        ['19:00', 'JR Gate Tower／Takashimaya Gate Tower Mall', '🛍️ 興趣候選樓層清單：11F UNIQLO／GU（營業通常至21:00）；7F SNOOPY TOWN；6F MOOMIN、ORBIS、Aiam（待確認店鋪）；5F @cosme、JEANASIS、Ungrid；1F 橡子共和國。Mall 多數樓層約20:00關閉，請優先選逛並以官方樓層圖確認店家是否仍在。', 'JR Gate Tower 名古屋', [['11F UNIQLO／GU', 'JRゲートタワー ユニクロ GU 11階'], ['7F SNOOPY TOWN', 'スヌーピータウンショップ 名古屋店'], ['6F ORBIS', 'オルビス タカシマヤ ゲートタワーモール'], ['6F Aiam（待核對）', 'Aiam タカシマヤ ゲートタワーモール'], ['5F @cosme', '@cosme NAGOYA ゲートタワーモール'], ['5F JEANASIS／Ungrid', 'JEANASIS Ungrid 名古屋 ゲートタワーモール'], ['1F 橡子共和國', 'どんぐり共和国 名古屋 タカシマヤ ゲートタワーモール']]],
+        ['19:00', 'JR Gate Tower／Takashimaya Gate Tower Mall', '🛍️ 興趣候選樓層清單：JR Gate Tower 11F UNIQLO／GU；Takashimaya Gate Tower Mall 7F SNOOPY TOWN、6F MOOMIN／ORBIS／Aiam、5F @cosme／JEANASIS／Ungrid、1F 橡子共和國。Mall 官網一般營業至20:00，部分店家不同；本晚時間有限，先選逛 MOOMIN，並以官方樓層圖核對。', 'JR Gate Tower 名古屋', [['11F UNIQLO／GU', 'JRゲートタワー ユニクロ GU 11階'], ['7F SNOOPY TOWN', 'スヌーピータウンショップ 名古屋店'], ['6F ORBIS', 'オルビス タカシマヤ ゲートタワーモール'], ['6F Aiam（待核對）', 'Aiam タカシマヤ ゲートタワーモール'], ['5F @cosme', '@cosme NAGOYA ゲートタワーモール'], ['5F JEANASIS／Ungrid', 'JEANASIS Ungrid 名古屋 ゲートタワーモール'], ['1F 橡子共和國', 'どんぐり共和国 名古屋 タカシマヤ ゲートタワーモール']]],
         ['19:00 同區順逛', '🛍️ MOOMIN SHOP NAGOYA（姆明官方專賣店）', 'Takashimaya Gate Tower Mall 6F，官方營業時間 10:00–20:00。建議優先逛這間再看夜景；實際閉店或入場限制請當日確認。', 'MOOMIN SHOP NAGOYA 名古屋 ゲートタワーモール 6F'],
         ['20:00', 'Sky Promenade', '看夜景。營業時間、最晚入場及票價待確認。', 'Sky Promenade Midland Square 名古屋']
       ] },
-      { title: '居酒屋吃炸雞翅', items: [['21:00', '🍗 炸雞翅居酒屋｜已選定店家（名稱待分享連結核對）', '使用者提供 Google 分享連結；目前無法解析店名及地址，請點開原始連結確認並導航。請依實際路程、最後點餐時間調整。', '名古屋 手羽先 居酒屋']] },
+      { title: '居酒屋吃炸雞翅', items: [['21:00', '🍗 炸雞翅居酒屋｜已選定店家（店名待核對）', '直接開啟下方的使用者分享地圖連結導航。短網址尚無法解析店名／地址，請勿將一般搜尋結果視為指定餐廳。', '']], links: [['🍗 開啟使用者指定的 Google 地圖', 'https://share.google/lUkntslBVyHrHpLy1']] },
       { title: '回飯店休息', items: [['22:00', '休息']] }
     ]
   },
@@ -62,7 +68,7 @@ const days = [
       ] },
       { title: '日枝神社', items: [['15:00', '參拜日枝神社', '', '日枝神社 飛騨高山']] },
       { title: '陣屋稻荷神社', items: [['17:00', '參拜陣屋稻荷神社', '表列約 12 分鐘步行，接續晚餐。', '陣屋稲荷神社 高山']] },
-      { title: 'Dining BULL 晚餐｜18:30 已預約', items: [['18:30', '🍽️ 炭焼きレストラン dining BULL（高山）', '✅ 使用者提供預約時間 18:30。地址：岐阜県高山市八軒町1-30，主打飛驒牛炭烤；預約人數、店家確認信及路線請自行核對。', '炭焼きレストラン dining BULL 岐阜県高山市八軒町1-30']] },
+      { title: 'Dining BULL 晚餐｜18:30 已預約', items: [['18:30', '🍽️ 炭焼きレストラン dining BULL（高山）', '✅ 使用者提供預約時間 18:30。地址：岐阜県高山市八軒町1-30，主打飛驒牛炭烤；預約人數、店家確認信及路線請自行核對。', '炭焼きレストラン dining BULL 岐阜県高山市八軒町1-30']], links: [['Dining BULL 餐廳資料／預約平台', 'https://autoreserve.com/ja/restaurants/fFuRAKu4Q8jb15uNGPG4']] },
       { title: '飯店休息與泡湯', items: [['20:00', '休息、泡湯', '浴場開放時間待確認。']] }
     ]
   },
@@ -101,7 +107,7 @@ const days = [
     date: '12/10', weekday: '四', city: '名古屋・榮', title: '大須與榮購物日',
     summary: '大須商店街、PARCO、榮商圈與溫泉浴場。',
     stay: vessel, hotelMap: vesselMap,
-    sources: [['名古屋市交通局', 'https://www.kotsu.city.nagoya.jp/'], ['大須駿河屋官方店鋪', 'https://www.suruga-ya.jp/feature/realstore/osu_main/index.html'], ['MANDARAKE 名古屋官方店鋪', 'https://www.mandarake.co.jp/dir/ngy/index-en.html'], ['らしんばん大須官方店鋪', 'https://www.lashinbang.com/store/38/'], ['Gamers 名古屋官方店鋪', 'https://www.gamers.co.jp/shop/detail.php?id=12'], ['Gee! Store 名古屋官方店鋪', 'https://www.geestore.com/geenet/geestore/nagoya'], ['吉伊卡哇專賣店（PARCO 東館 3F）', 'https://nagoya.parco.jp/shop/detail/?cd=028146'], ['魔法吉伊卡哇主題店（東館 B1F）', 'https://nagoya.parco.jp/shop/detail/?cd=029195']],
+    sources: [['名古屋市交通局', 'https://www.kotsu.city.nagoya.jp/'], ['PG馬麻｜#C-pla 名古屋大須店官方商店街介紹', 'https://osu.nagoya/ja/shop.php?s=NKA9aK'], ['PG馬麻｜よっちゃん小吃店商店街介紹', 'https://www.kinsyachi.com/shop/yochan/'], ['大須駿河屋官方店鋪', 'https://www.suruga-ya.jp/feature/realstore/osu_main/index.html'], ['MANDARAKE 名古屋官方店鋪', 'https://www.mandarake.co.jp/dir/ngy/index-en.html'], ['らしんばん大須官方店鋪', 'https://www.lashinbang.com/store/38/'], ['Gamers 名古屋官方店鋪', 'https://www.gamers.co.jp/shop/detail.php?id=12'], ['Gee! Store 名古屋官方店鋪', 'https://www.geestore.com/geenet/geestore/nagoya'], ['吉伊卡哇專賣店（PARCO 東館 3F）', 'https://nagoya.parco.jp/shop/detail/?cd=028146'], ['魔法吉伊卡哇主題店（東館 B1F）', 'https://nagoya.parco.jp/shop/detail/?cd=029195']],
     cards: [
       { title: '大須散策｜團員分頭逛', items: [
         ['09:00', '大須觀音寺', '📕 御朱印收集提醒（寺院）：確認納經所受理時間與納經料；先一起參拜再分頭行動。', '大須観音'],
@@ -109,12 +115,14 @@ const days = [
       ] },
       { title: '🍡 PG馬麻｜大須吃喝・雜貨・扭蛋', items: [
         ['10:00 起（視店家營業）', '商店街特色小吃巡禮', '候選：大須味噌串炸、糰子、外郎糕（ういろう）、鯛魚燒或可麗餅；遇到有營業的攤位再決定，不必全部吃。', '大須商店街 食べ歩き'],
-        ['順路選逛', '扭蛋與可愛雜貨尋寶', '在大須商店街找大型扭蛋區、ガチャガチャ、3COINS／可愛雜貨等，實際店舖以現場地圖為準。', '大須 ガチャガチャ 雑貨'],
+        ['10:00 起', '🎰 #C-pla 名古屋大須店（扭蛋專賣）', '大須萬松寺通商店街內，名古屋官方觀光資訊介紹有約1400種扭蛋；若有營業，適合尋找吉伊卡哇、動漫角色或可愛迷你玩具。', '#C-pla 名古屋大須店'],
+        ['11:00 起（順路）', '🍓 よっちゃん｜草莓糖葫蘆・小吃', '大須3-30-1，商店街公開資料營業 11:00–19:00，主打草莓糖葫蘆、起司球等；若有營業再買。', 'よっちゃん 大須3丁目30-1'],
+        ['順路選逛', '其他扭蛋與可愛雜貨', '若還有時間，可找 #C-pla 大須2號店或商店街小物，依現場營業與路線決定。', '#C-pla 名古屋大須2号店'],
         ['順路選逛', '大須伴手禮／甜點候選', '有時間可選購特色日式點心或可愛角色小物，午前營業與售完狀況請當日確認。', '大須商店街 和菓子 スイーツ']
       ] },
       { title: '🎮 AD把拔｜大須動漫同人必逛', items: [
         ['必逛', '駿河屋 名古屋大須本館', '大須3-32-23，3F–5F；10:00–21:00。動漫、遊戲及同人相關樓層。', '駿河屋 名古屋大須本館'],
-        ['必逛', 'MANDARAKE 名古屋店', '大須3-18-21；中古漫畫、同人誌、收藏品等。一般中午起營業，早上逛街時間有限，請依官方時間調整。', 'まんだらけ 名古屋店'],
+        ['必逛・時間衝突提醒', 'MANDARAKE 名古屋店', '大須3-18-21；官網營業 12:00–20:00。原本預計 12:00 前離開大須去 PARCO，因此無法在 10:00–12:00 完成此店；若要必逛，須延後 PARCO 行程或另排時間。', 'まんだらけ 名古屋店'],
         ['必逛', 'らしんばん 名古屋大須店', '大須3-10-35 MultinaBox 2F；動漫周邊、同人商品。', 'らしんばん 名古屋大須店'],
         ['必逛', 'Gamers 名古屋店', '大須3-30-40 萬松寺大樓 1F；官方資訊營業 10:00–21:00。', 'ゲーマーズ 名古屋店'],
         ['有時間再逛', 'Gee! Store 名古屋', '大須3-11-34；平日 11:00–20:00，服飾／角色周邊。', 'ジーストア 名古屋']
@@ -208,7 +216,7 @@ function renderOverview() {
     </div>`;
 }
 
-function renderCard({ title, transport, items }) {
+function renderCard({ title, transport, items, links = [] }) {
   return `
     <li class="timeline-card${transport ? ' transport-card' : ''}">
       <div class="timeline-meta">
@@ -230,6 +238,7 @@ function renderCard({ title, transport, items }) {
             </div>
           </li>`).join('')}
       </ul>
+      ${links.length ? `<div class="actions">${links.map(([label, url]) => externalLink(label, url)).join('')}</div>` : ''}
     </li>`;
 }
 
