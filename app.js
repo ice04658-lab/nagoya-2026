@@ -15,7 +15,7 @@ const days = [
     date: '12/07', weekday: '一', city: '名古屋', title: '抵達名古屋',
     summary: '熱田神宮、鰻魚飯與名古屋站夜景。',
     stay: via, hotelMap: via,
-    sources: [meitetsu, ['中部國際機場', 'https://www.centrair.jp/'], ['MOOMIN SHOP NAGOYA 官方資訊', 'https://www.moomin.co.jp/shops/moominshop/nagoya']],
+    sources: [meitetsu, ['中部國際機場', 'https://www.centrair.jp/'], ['MOOMIN SHOP NAGOYA 官方資訊', 'https://www.moomin.co.jp/shops/moominshop/nagoya'], ['Gate Tower Mall 商店樓層導覽', 'https://www.jr-tgm.com/floorguide'], ['12/7 雞翅居酒屋使用者分享地圖', 'https://share.google/lUkntslBVyHrHpLy1']],
     cards: [
       { title: '台北 → 中部國際機場', transport: '飛機', items: [
         ['08:45', '台灣虎航 IT206｜桃園國際機場第一航廈（T1）起飛', '出發機場、航廈與報到櫃檯請依電子機票及航空公司公告再次確認。'],
@@ -31,13 +31,15 @@ const days = [
       { title: '神宮 → 名古屋', transport: '轉乘', items: [
         ['17:00', '搭名鐵或計程車', '表列名鐵約 30 分鐘、計程車約 20 分鐘。實際車次、車程與票價待確認。', '名古屋站']
       ] },
-      { title: '飯店 Check-in', items: [['18:00', via, '', via]] },
+      { title: '飯店 Check-in', items: [
+        ['18:00', via, '📚 AD把拔想逛：Melonbooks 名古屋店就在名古屋站太閤通口側（椿町 21-2 一帶）；若有時間可順路，營業時間與實際店址請當日再核對。', via, [['AD把拔｜Melonbooks 名古屋店', 'メロンブックス 名古屋店 椿町21-2']]]
+      ] },
       { title: '名古屋站購物與夜景', items: [
-        ['19:00', 'JR Gate Tower', '逛街購物；MOOMIN 官方專賣店就在同棟 Takashimaya Gate Tower Mall。', 'JR Gate Tower 名古屋'],
+        ['19:00', 'JR Gate Tower／Takashimaya Gate Tower Mall', '🛍️ 興趣候選樓層清單：11F UNIQLO／GU（營業通常至21:00）；7F SNOOPY TOWN；6F MOOMIN、ORBIS、Aiam（待確認店鋪）；5F @cosme、JEANASIS、Ungrid；1F 橡子共和國。Mall 多數樓層約20:00關閉，請優先選逛並以官方樓層圖確認店家是否仍在。', 'JR Gate Tower 名古屋', [['11F UNIQLO／GU', 'JRゲートタワー ユニクロ GU 11階'], ['7F SNOOPY TOWN', 'スヌーピータウンショップ 名古屋店'], ['6F ORBIS', 'オルビス タカシマヤ ゲートタワーモール'], ['6F Aiam（待核對）', 'Aiam タカシマヤ ゲートタワーモール'], ['5F @cosme', '@cosme NAGOYA ゲートタワーモール'], ['5F JEANASIS／Ungrid', 'JEANASIS Ungrid 名古屋 ゲートタワーモール'], ['1F 橡子共和國', 'どんぐり共和国 名古屋 タカシマヤ ゲートタワーモール']]],
         ['19:00 同區順逛', '🛍️ MOOMIN SHOP NAGOYA（姆明官方專賣店）', 'Takashimaya Gate Tower Mall 6F，官方營業時間 10:00–20:00。建議優先逛這間再看夜景；實際閉店或入場限制請當日確認。', 'MOOMIN SHOP NAGOYA 名古屋 ゲートタワーモール 6F'],
         ['20:00', 'Sky Promenade', '看夜景。營業時間、最晚入場及票價待確認。', 'Sky Promenade Midland Square 名古屋']
       ] },
-      { title: '居酒屋吃炸雞翅', items: [['21:00', '店家待確認']] },
+      { title: '居酒屋吃炸雞翅', items: [['21:00', '🍗 炸雞翅居酒屋｜已選定店家（名稱待分享連結核對）', '使用者提供 Google 分享連結；目前無法解析店名及地址，請點開原始連結確認並導航。請依實際路程、最後點餐時間調整。', '名古屋 手羽先 居酒屋']] },
       { title: '回飯店休息', items: [['22:00', '休息']] }
     ]
   },
@@ -45,7 +47,7 @@ const days = [
     date: '12/08', weekday: '二', city: '高山', title: '高山古街散策',
     summary: '宮川朝市、古街小吃、神社與泡湯。',
     stay: koko, hotelMap: 'KOKO HOTEL 飛騨高山',
-    sources: [jr, ['濃飛巴士官網', 'https://www.nouhibus.co.jp/']],
+    sources: [jr, ['濃飛巴士官網', 'https://www.nouhibus.co.jp/'], ['Dining BULL 餐廳資料及預約入口', 'https://autoreserve.com/ja/restaurants/fFuRAKu4Q8jb15uNGPG4']],
     cards: [
       { title: '名古屋 → 高山', transport: '交通待確認', items: [
         ['07:43', '名古屋出發', '表內同列 JR 名古屋站（新幹線出口）與濃飛巴士，交通工具、乘車地點、班次與票價待最終確認。若搭巴士，沿途可看國道風光。', 'JR 名古屋駅 新幹線口'],
@@ -60,7 +62,7 @@ const days = [
       ] },
       { title: '日枝神社', items: [['15:00', '參拜日枝神社', '', '日枝神社 飛騨高山']] },
       { title: '陣屋稻荷神社', items: [['17:00', '參拜陣屋稻荷神社', '表列約 12 分鐘步行，接續晚餐。', '陣屋稲荷神社 高山']] },
-      { title: 'Dining Bull 晚餐', items: [['18:00', 'Dining Bull', '營業時間與預約方式待確認。', 'Dining Bull 高山']] },
+      { title: 'Dining BULL 晚餐｜18:30 已預約', items: [['18:30', '🍽️ 炭焼きレストラン dining BULL（高山）', '✅ 使用者提供預約時間 18:30。地址：岐阜県高山市八軒町1-30，主打飛驒牛炭烤；預約人數、店家確認信及路線請自行核對。', '炭焼きレストラン dining BULL 岐阜県高山市八軒町1-30']] },
       { title: '飯店休息與泡湯', items: [['20:00', '休息、泡湯', '浴場開放時間待確認。']] }
     ]
   },
@@ -68,7 +70,7 @@ const days = [
     date: '12/09', weekday: '三', city: '新穗高・名古屋', title: '新穗高雪山日',
     summary: '上午賞雪，下午經高山轉 JR 回名古屋。',
     stay: vessel, hotelMap: vesselMap,
-    sources: [nohi, jr],
+    sources: [nohi, jr, ['MIRAI TOWER 2026 冬季光影活動', 'https://www.nagoya-tv-tower.co.jp/event/star-illumination-2026/']],
     cards: [
       { title: '高山 → 新穗高', transport: '濃飛巴士', items: [
         ['07:40', '高山濃飛巴士中心出發', '套票備註：奧飛驒まるごとバリューきっぷ。適用範圍、價格與巴士班次待確認。', '高山濃飛巴士中心'],
@@ -88,19 +90,34 @@ const days = [
         ['15:34', '主要班次｜JR 特急「飛驒」', '候選班次：14:46（轉乘較趕）、16:33（較晚）。出發前核對時刻、轉乘與訂位，依當天狀況擇一搭乘。', 'JR 高山站'],
         ['18:06', '主要班次抵達名古屋，取行李', '取件位置與可取件時間待確認。', 'JR 名古屋站']
       ] },
-      { title: '中部電力 MIRAI TOWER', items: [['20:00', '造訪 MIRAI TOWER', '開放時間、最晚入場及票價待確認。', '中部電力 MIRAI TOWER']] },
-      { title: 'PEANUTS Cafe Nagoya', items: [['21:00', '咖啡廳用餐', '表列最晚點餐 21:00，實際營業、最後點餐及預約方式待確認。', 'PEANUTS Cafe Nagoya']] }
+      { title: '中部電力 MIRAI TOWER｜20:30 訂位前順遊', items: [
+        ['20:00 左右', '🗼 MIRAI TOWER 塔外夜景與 Hisaya-odori Park 散步', '優先拍攝夜間點燈的塔體、久屋大通公園街景，不用排隊就能欣賞。依從名古屋站抵達榮的實際時間彈性縮短。', '中部電力 MIRAI TOWER', [['久屋大通公園', 'RAYARD Hisaya-odori Park']]],
+        ['備選・時間充裕才去', '✨ 90m Sky Deck「NAKED 天空のSTAR ILLUMINATION 2026」', '2026/11/16–2027/2/28 舉辦；12/9 平日夜間 17:00–21:00，最晚 20:40 入場。但 20:30 已預約 PEANUTS Cafe，原則不建議當晚登塔，避免遲到；如要登塔需另行調整先後。', 'MIRAI TOWER Sky Deck 名古屋']
+      ] },
+      { title: 'PEANUTS Cafe Nagoya｜20:30 已預約', items: [['20:30', '🥜 PEANUTS Cafe Nagoya 用餐', '✅ 使用者提供預約時間 20:30；請以訂位確認資料核對分店、入座及取消規則，先於預約前抵達。', 'PEANUTS Cafe Nagoya']] }
     ]
   },
   {
     date: '12/10', weekday: '四', city: '名古屋・榮', title: '大須與榮購物日',
     summary: '大須商店街、PARCO、榮商圈與溫泉浴場。',
     stay: vessel, hotelMap: vesselMap,
-    sources: [['名古屋市交通局', 'https://www.kotsu.city.nagoya.jp/'], ['吉伊卡哇專賣店（PARCO 東館 3F）', 'https://nagoya.parco.jp/shop/detail/?cd=028146'], ['魔法吉伊卡哇主題店（東館 B1F）', 'https://nagoya.parco.jp/shop/detail/?cd=029195']],
+    sources: [['名古屋市交通局', 'https://www.kotsu.city.nagoya.jp/'], ['大須駿河屋官方店鋪', 'https://www.suruga-ya.jp/feature/realstore/osu_main/index.html'], ['MANDARAKE 名古屋官方店鋪', 'https://www.mandarake.co.jp/dir/ngy/index-en.html'], ['らしんばん大須官方店鋪', 'https://www.lashinbang.com/store/38/'], ['Gamers 名古屋官方店鋪', 'https://www.gamers.co.jp/shop/detail.php?id=12'], ['Gee! Store 名古屋官方店鋪', 'https://www.geestore.com/geenet/geestore/nagoya'], ['吉伊卡哇專賣店（PARCO 東館 3F）', 'https://nagoya.parco.jp/shop/detail/?cd=028146'], ['魔法吉伊卡哇主題店（東館 B1F）', 'https://nagoya.parco.jp/shop/detail/?cd=029195']],
     cards: [
-      { title: '大須散策', items: [
-        ['09:00', '大須觀音寺', '📕 御朱印收集提醒（寺院）：確認納經所受理時間與納經料。', '大須観音'],
-        ['10:00', '大須商店街', '逛動漫商品店，可分頭逛。', '大須商店街']
+      { title: '大須散策｜團員分頭逛', items: [
+        ['09:00', '大須觀音寺', '📕 御朱印收集提醒（寺院）：確認納經所受理時間與納經料；先一起參拜再分頭行動。', '大須観音'],
+        ['10:00', '大須商店街集合／自由逛', 'PG馬麻與AD把拔分頭逛街，約 12:00 前往 PARCO；各店營業時間不同，多數 10:00～11:00 才陸續開門，先選已營業的店。', '大須商店街']
+      ] },
+      { title: '🍡 PG馬麻｜大須吃喝・雜貨・扭蛋', items: [
+        ['10:00 起（視店家營業）', '商店街特色小吃巡禮', '候選：大須味噌串炸、糰子、外郎糕（ういろう）、鯛魚燒或可麗餅；遇到有營業的攤位再決定，不必全部吃。', '大須商店街 食べ歩き'],
+        ['順路選逛', '扭蛋與可愛雜貨尋寶', '在大須商店街找大型扭蛋區、ガチャガチャ、3COINS／可愛雜貨等，實際店舖以現場地圖為準。', '大須 ガチャガチャ 雑貨'],
+        ['順路選逛', '大須伴手禮／甜點候選', '有時間可選購特色日式點心或可愛角色小物，午前營業與售完狀況請當日確認。', '大須商店街 和菓子 スイーツ']
+      ] },
+      { title: '🎮 AD把拔｜大須動漫同人必逛', items: [
+        ['必逛', '駿河屋 名古屋大須本館', '大須3-32-23，3F–5F；10:00–21:00。動漫、遊戲及同人相關樓層。', '駿河屋 名古屋大須本館'],
+        ['必逛', 'MANDARAKE 名古屋店', '大須3-18-21；中古漫畫、同人誌、收藏品等。一般中午起營業，早上逛街時間有限，請依官方時間調整。', 'まんだらけ 名古屋店'],
+        ['必逛', 'らしんばん 名古屋大須店', '大須3-10-35 MultinaBox 2F；動漫周邊、同人商品。', 'らしんばん 名古屋大須店'],
+        ['必逛', 'Gamers 名古屋店', '大須3-30-40 萬松寺大樓 1F；官方資訊營業 10:00–21:00。', 'ゲーマーズ 名古屋店'],
+        ['有時間再逛', 'Gee! Store 名古屋', '大須3-11-34；平日 11:00–20:00，服飾／角色周邊。', 'ジーストア 名古屋']
       ] },
       { title: '名古屋 PARCO', items: [
         ['12:00', '🧸 ちいかわらんど 名古屋 PARCO 店（吉伊卡哇官方專賣店）', '名古屋 PARCO 東館 3F，館內基本營業時間 10:00–20:00；部分新品或活動可能需事前預約入場，出發前查看官方公告。', 'ちいかわらんど 名古屋パルコ 東館 3F'],
@@ -138,9 +155,12 @@ const days = [
   {
     date: '12/12', weekday: '六', city: '中部機場・台灣', title: '搭機返台',
     summary: '機場採買蝦餅與伴手禮，搭機返台。',
-    sources: [['中部國際機場', 'https://www.centrair.jp/']],
+    sources: [['中部國際機場', 'https://www.centrair.jp/'], ['蝦仙貝之里｜T1 Sky Town 官方店鋪資訊', 'https://www.centrair.jp/tzh/shop-dine/shop/ebisenbei.html'], ['T1／T2 航廈接駁資訊', 'https://www.centrair.jp/en/access/bus.html']],
     cards: [
-      { title: '機場採買', items: [['10:00', '購買蝦餅與伴手禮', '店家與營業時間待確認。', airport]] },
+      { title: '機場採買｜先 T1、再 T2', items: [
+        ['10:00（暫定）', '🍤 蝦仙貝之里（えびせんべいの里）', '✅ 位置：中部國際機場第一航廈 T1，4F Sky Town 商店與餐廳區。實際營業時間、庫存及排隊狀況請當日確認；留意購物時間。', 'えびせんべいの里 セントレア 4F スカイタウン'],
+        ['買完立即前往 T2', '🚶／🚌 轉往第二航廈辦理虎航 IT207 報到', '你的回程班機從 T2 起飛。T1 Access Plaza 與 T2 間有接駁巴士，也可依官方指示步行；務必預留跨航廈、排隊、託運及安檢時間，不要為了蝦餅耽誤班機。', '中部国際空港 第2ターミナル']
+      ] },
       { title: '中部國際機場 → 台灣', transport: '飛機', items: [
         ['13:15', '台灣虎航 IT207｜中部國際機場第二航廈（T2）起飛返台', '請依電子機票及航空公司公告確認航廈、報到櫃檯與登機時間；提前辦理報到。', '中部国際空港 第2ターミナル']
       ] }
